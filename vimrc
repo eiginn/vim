@@ -166,6 +166,9 @@ endif
 " paste mode toggle
 set pastetoggle=<F2>
 
+" Delete ALL trailing whitespace on every line
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
 " insert mode in new line at end of file
 nmap <C-A> Go
 
