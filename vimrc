@@ -170,6 +170,7 @@ set pastetoggle=<F2>
 command! ClearWhiteSpace :let _s=@/|:%s/\s\+$//e|:let @/=_s|:nohl
 
 " insert mode in new line at end of file
+" REMEBER if you are in (my) tmux the prefix is also <C-A> duh
 nmap <C-A> Go
 
 " for some reason home and end keys are not mapping properly.
