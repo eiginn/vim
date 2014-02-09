@@ -167,7 +167,7 @@ endif
 set pastetoggle=<F2>
 
 " Delete ALL trailing whitespace on every line
-command! ClearWhiteSpace :let _s=@/|:%s/\s\+$//e|:let @/=_s|:nohl<CR>
+command! ClearWhiteSpace :let _s=@/|:%s/\s\+$//e|:let @/=_s|:nohl
 
 " insert mode in new line at end of file
 nmap <C-A> Go
