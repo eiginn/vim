@@ -282,3 +282,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 " Turn off folding
 set nofoldenable
+
+" vim instant markdown
+let g:instant_markdown_autostart = 0
