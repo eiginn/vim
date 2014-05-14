@@ -63,6 +63,8 @@ Bundle 'honza/dockerfile.vim.git'
 Bundle 'leshill/vim-json.git'
 Bundle 'jamessan/vim-gnupg.git'
 Bundle 'terryma/vim-multiple-cursors.git'
+Bundle 'gregsexton/gitv.git'
+Bundle 'junegunn/vim-github-dashboard'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
@@ -96,7 +98,7 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 let g:Powerline_symbols = 'fancy'
 "autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
-color jellybeans
+color hybrid
 
 if v:version >= 703
   "undo settings
