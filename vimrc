@@ -65,6 +65,7 @@ Bundle 'jamessan/vim-gnupg.git'
 Bundle 'terryma/vim-multiple-cursors.git'
 Bundle 'gregsexton/gitv.git'
 Bundle 'junegunn/vim-github-dashboard'
+Bundle 'wting/rust.vim'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
