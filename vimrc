@@ -99,7 +99,7 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 let g:Powerline_symbols = 'fancy'
 "autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
-color hybrid
+color jellybeans
 
 if v:version >= 703
   "undo settings
