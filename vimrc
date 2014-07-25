@@ -66,6 +66,7 @@ Bundle 'terryma/vim-multiple-cursors.git'
 Bundle 'gregsexton/gitv.git'
 Bundle 'junegunn/vim-github-dashboard'
 Bundle 'wting/rust.vim'
+Bundle 'severin-lemaignan/vim-minimap'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
