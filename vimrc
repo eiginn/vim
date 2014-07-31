@@ -67,6 +67,7 @@ Bundle 'gregsexton/gitv.git'
 Bundle 'junegunn/vim-github-dashboard'
 Bundle 'wting/rust.vim'
 Bundle 'severin-lemaignan/vim-minimap'
+Bundle 'rking/ag.vim'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
