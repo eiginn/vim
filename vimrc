@@ -248,7 +248,7 @@ nmap <leader>fj :%!jq '.'<CR>
 
 " NERDtree
 let g:NERDTreeWinSize = 40
-" autocmd vimenter * if !argc() | NERDTree | endif
+autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeShowBookmarks = 1
 
 " mkdir on save if path does not exist
