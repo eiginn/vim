@@ -58,15 +58,15 @@ Bundle 'saltstack/salt-vim.git'
 Bundle 'tclem/vim-arduino.git'
 "Bundle 'jamessan/vim-gnupg.git'
 Bundle 'kien/ctrlp.vim.git'
-Bundle 'mattn/vdbi-vim'
+"Bundle 'mattn/vdbi-vim'
 Bundle 'honza/dockerfile.vim.git'
-Bundle 'leshill/vim-json.git'
-Bundle 'jamessan/vim-gnupg.git'
-Bundle 'terryma/vim-multiple-cursors.git'
-Bundle 'gregsexton/gitv.git'
-Bundle 'junegunn/vim-github-dashboard'
-Bundle 'wting/rust.vim'
-Bundle 'severin-lemaignan/vim-minimap'
+"Bundle 'leshill/vim-json.git'
+"Bundle 'jamessan/vim-gnupg.git'
+"Bundle 'terryma/vim-multiple-cursors.git'
+"Bundle 'gregsexton/gitv.git'
+"Bundle 'junegunn/vim-github-dashboard'
+"Bundle 'wting/rust.vim'
+"Bundle 'severin-lemaignan/vim-minimap'
 Bundle 'rking/ag.vim'
 
 " Colorscheme bundles
@@ -76,7 +76,7 @@ Bundle 'sickill/vim-monokai.git'
 Bundle 'tomasr/molokai.git'
 Bundle 'junegunn/seoul256.vim'
 Bundle 'w0ng/vim-hybrid.git'
-Bundle 'chriskempson/base16-vim'
+"Bundle 'chriskempson/base16-vim'
 
 " ================ VIM Powerline ====================
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -248,7 +248,7 @@ nmap <leader>fj :%!jq '.'<CR>
 
 " NERDtree
 let g:NERDTreeWinSize = 40
-autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeShowBookmarks = 1
 
 " mkdir on save if path does not exist
