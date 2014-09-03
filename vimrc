@@ -68,6 +68,7 @@ Bundle 'honza/dockerfile.vim.git'
 "Bundle 'wting/rust.vim'
 "Bundle 'severin-lemaignan/vim-minimap'
 Bundle 'rking/ag.vim'
+Bundle 'ivanov/vim-ipython'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
