@@ -77,7 +77,7 @@ Bundle 'sickill/vim-monokai.git'
 Bundle 'tomasr/molokai.git'
 Bundle 'junegunn/seoul256.vim'
 Bundle 'w0ng/vim-hybrid.git'
-"Bundle 'chriskempson/base16-vim'
+Bundle 'whatyouhide/vim-gotham.git'
 
 " ================ VIM Powerline ====================
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
