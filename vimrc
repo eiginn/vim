@@ -69,6 +69,7 @@ Bundle 'honza/dockerfile.vim.git'
 "Bundle 'severin-lemaignan/vim-minimap'
 Bundle 'rking/ag.vim'
 Bundle 'ivanov/vim-ipython'
+Bundle 'sjl/gundo.vim'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
@@ -78,6 +79,7 @@ Bundle 'tomasr/molokai.git'
 Bundle 'junegunn/seoul256.vim'
 Bundle 'w0ng/vim-hybrid.git'
 Bundle 'whatyouhide/vim-gotham.git'
+Bundle 'sjl/badwolf.git'
 
 " ================ VIM Powerline ====================
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -291,3 +293,6 @@ set nofoldenable
 
 " vim instant markdown
 let g:instant_markdown_autostart = 0
+
+" gundo
+nnoremap <F5> :GundoToggle<CR>
