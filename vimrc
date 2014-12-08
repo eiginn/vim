@@ -61,6 +61,8 @@ Bundle 'rking/ag.vim'
 Bundle 'ivanov/vim-ipython'
 Bundle 'sjl/gundo.vim'
 Bundle 'elzr/vim-json'
+Bundle 'jamessan/vim-gnupg'
+Bundle 'nathanaelkane/vim-indent-guides'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
@@ -287,3 +289,7 @@ let g:instant_markdown_autostart = 0
 
 " gundo
 nnoremap <F5> :GundoToggle<CR>
+
+" gnupg options
+let g:GPGPreferArmor = 1
+let g:GPGPreferSign = 1
