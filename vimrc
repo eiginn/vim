@@ -63,6 +63,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'elzr/vim-json'
 Bundle 'jamessan/vim-gnupg'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'neilagabriel/vim-geeknote'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
@@ -293,3 +294,6 @@ nnoremap <F5> :GundoToggle<CR>
 " gnupg options
 let g:GPGPreferArmor = 1
 let g:GPGPreferSign = 1
+
+" geeknote
+noremap <F8> :Geeknote<cr>
