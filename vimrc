@@ -64,6 +64,7 @@ Bundle 'elzr/vim-json'
 Bundle 'jamessan/vim-gnupg'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'neilagabriel/vim-geeknote'
+Bundle 'nicwest/QQ.vim'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
