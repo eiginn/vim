@@ -298,3 +298,4 @@ let g:GPGPreferSign = 1
 
 " geeknote
 noremap <F8> :Geeknote<cr>
+autocmd FileType geeknote setlocal nonumber
