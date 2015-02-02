@@ -54,7 +54,7 @@ Bundle 'tpope/vim-fugitive.git'
 Bundle 'davidhalter/jedi-vim.git'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'saltstack/salt-vim.git'
-Bundle 'tclem/vim-arduino.git'
+Bundle 'jplaut/vim-arduino-ino.git'
 Bundle 'kien/ctrlp.vim.git'
 Bundle 'honza/dockerfile.vim.git'
 Bundle 'rking/ag.vim'
@@ -263,7 +263,7 @@ augroup BWCCreateDir
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
-" Arduino Filetypes
+" Arduino
 au BufRead,BufNewFile *.pde set filetype=arduino
 au BufRead,BufNewFile *.ino set filetype=arduino
 
