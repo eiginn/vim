@@ -1,1 +1,2 @@
 let vimpager_scrolloff = 3
+let vimpager_passthrough = 1
