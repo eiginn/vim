@@ -51,6 +51,7 @@ Bundle 'scrooloose/nerdtree.git'
 "Bundle 'jmcantrell/vim-virtualenv.git'
 Bundle 'vim-scripts/YankRing.vim.git'
 Bundle 'tpope/vim-fugitive.git'
+Bundle 'tpope/vim-commentary.git'
 Bundle 'davidhalter/jedi-vim.git'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'saltstack/salt-vim.git'
@@ -187,9 +188,6 @@ nmap <esc>OH 0
 nmap <esc>OF $
 imap <esc>OF <esc>$a
 cmap <esc>OF <end>
-
-" set openssl backup for openssl.vim
-let g:openssl_backup = 1
 
 " Disable EX mode key
 map Q <Nop>
