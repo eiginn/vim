@@ -73,11 +73,7 @@ Bundle 'ryanss/vim-hackernews'
 Bundle 'gregsexton/Muon.git'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'sickill/vim-monokai.git'
-Bundle 'tomasr/molokai.git'
-Bundle 'junegunn/seoul256.vim'
 Bundle 'w0ng/vim-hybrid.git'
-Bundle 'whatyouhide/vim-gotham.git'
-Bundle 'sjl/badwolf.git'
 
 " ================ VIM Powerline ====================
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
