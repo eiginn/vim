@@ -68,6 +68,7 @@ Bundle 'neilagabriel/vim-geeknote'
 Bundle 'nicwest/QQ.vim'
 Bundle 'idanarye/vim-merginal'
 Bundle 'ryanss/vim-hackernews'
+Bundle 'majutsushi/tagbar'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
@@ -295,3 +296,6 @@ let g:GPGPreferSign = 1
 " geeknote
 noremap <F8> :Geeknote<cr>
 autocmd FileType geeknote setlocal nonumber
+
+" tagbar
+nmap <silent> <leader>t :TagbarToggle<CR>
