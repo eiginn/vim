@@ -55,6 +55,7 @@ Bundle 'tpope/vim-commentary.git'
 Bundle 'davidhalter/jedi-vim.git'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'saltstack/salt-vim.git'
+Bundle 'Glench/Vim-Jinja2-Syntax.git'
 Bundle 'jplaut/vim-arduino-ino.git'
 Bundle 'kien/ctrlp.vim.git'
 Bundle 'honza/dockerfile.vim.git'
@@ -149,7 +150,7 @@ set title
 
 " show trailing whitespace with <leader>s
 set listchars=tab:>-,trail:·,eol:$
-nmap <silent> <leader>s :set nolist!<CR>
+nmap <leader>s :set nolist!<CR>
 set listchars=tab:»-,trail:•,eol:¶,nbsp:⎵,precedes:«,extends:» sbr=↪
 
 " Highlight dynamically as pattern is typed
