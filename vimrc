@@ -70,6 +70,7 @@ Bundle 'nicwest/QQ.vim'
 Bundle 'idanarye/vim-merginal'
 Bundle 'ryanss/vim-hackernews'
 Bundle 'majutsushi/tagbar'
+Bundle 'fatih/vim-go'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
