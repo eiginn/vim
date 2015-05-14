@@ -1,2 +1,3 @@
 let vimpager_scrolloff = 3
 let vimpager_passthrough = 1
+set t_ti= t_te=
