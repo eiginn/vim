@@ -70,6 +70,7 @@ Bundle 'idanarye/vim-merginal'
 Bundle 'ryanss/vim-hackernews'
 Bundle 'majutsushi/tagbar'
 Bundle 'fatih/vim-go'
+Bundle 'fmoralesc/vim-pad.git'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
@@ -300,3 +301,6 @@ autocmd FileType geeknote setlocal nonumber
 
 " tagbar
 nmap <silent> <leader>t :TagbarToggle<CR>
+
+" vim-pad
+let g:pad#dir = "~/.vim-pad/"
