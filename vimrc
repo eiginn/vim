@@ -71,12 +71,14 @@ Bundle 'ryanss/vim-hackernews'
 Bundle 'majutsushi/tagbar'
 Bundle 'fatih/vim-go'
 Bundle 'fmoralesc/vim-pad.git'
+Bundle 'mhinz/vim-rfc.git'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'sickill/vim-monokai.git'
 Bundle 'w0ng/vim-hybrid.git'
+Bundle 'zeis/vim-kolor.git'
 
 " ================ VIM Powerline ====================
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -245,7 +247,7 @@ nmap <leader>fj :%!jq '.'<CR>
 
 " NERDtree
 let g:NERDTreeWinSize = 40
-"autocmd vimenter * if !argc() | NERDTree | endif
+autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeShowBookmarks = 1
 
 " mkdir on save if path does not exist
@@ -304,3 +306,7 @@ nmap <silent> <leader>t :TagbarToggle<CR>
 
 " vim-pad
 let g:pad#dir = "~/.vim-pad/"
+
+" highlight changes
+let python_highlight_all = 1
+
