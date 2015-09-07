@@ -72,6 +72,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'fatih/vim-go'
 Bundle 'fmoralesc/vim-pad.git'
 Bundle 'mhinz/vim-rfc.git'
+Bundle 'tmux-plugins/vim-tmux'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
