@@ -73,6 +73,7 @@ Bundle 'fatih/vim-go'
 Bundle 'fmoralesc/vim-pad.git'
 Bundle 'mhinz/vim-rfc.git'
 Bundle 'tmux-plugins/vim-tmux'
+Bundle 'sbl/scvim.git'
 
 " Colorscheme bundles
 Bundle 'gregsexton/Muon.git'
@@ -248,7 +249,7 @@ nmap <leader>fj :%!jq '.'<CR>
 
 " NERDtree
 let g:NERDTreeWinSize = 40
-autocmd vimenter * if !argc() | NERDTree | endif
+" autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeShowBookmarks = 1
 
 " mkdir on save if path does not exist
@@ -311,3 +312,13 @@ let g:pad#dir = "~/.vim-pad/"
 " highlight changes
 let python_highlight_all = 1
 
+" ranger as file explorer
+function RangerExplorer()
+    exec "silent !ranger --choosefile=/tmp/vim_ranger_current_file " . expand("%:p:h")
+    if filereadable('/tmp/vim_ranger_current_file')
+        exec 'edit ' . system('cat /tmp/vim_ranger_current_file')
+        call system('rm /tmp/vim_ranger_current_file')
+    endif
+    redraw!
+endfun
+map <Leader>x :call RangerExplorer()<CR>
