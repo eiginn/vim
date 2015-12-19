@@ -30,60 +30,56 @@ set expandtab
 
 " =================== Vundle ========================
 
-set rtp+=~/.vim/vundle/
-call vundle#rc()
-let g:vundle_default_git_proto = 'git'
-
-" let Vundle manage Vundle
-" Required
-"Bundle 'gmarik/vundle'
+call plug#begin('~/.vim/plugged')
 
 " Plugin bundles
-Bundle 'mattn/gist-vim'
-Bundle 'Lokaltog/powerline.git'
-Bundle 'mattn/webapi-vim'
-Bundle 'hallison/vim-markdown'
-Bundle 'suan/vim-instant-markdown.git'
-Bundle 'vim-ruby/vim-ruby.git'
-Bundle 'iptables'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'scrooloose/nerdtree.git'
-Bundle 'vim-scripts/YankRing.vim.git'
-Bundle 'tpope/vim-fugitive.git'
-Bundle 'tpope/vim-commentary.git'
-Bundle 'davidhalter/jedi-vim.git'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'saltstack/salt-vim.git'
-Bundle 'Glench/Vim-Jinja2-Syntax.git'
-Bundle 'jplaut/vim-arduino-ino.git'
-Bundle 'kien/ctrlp.vim.git'
-Bundle 'honza/dockerfile.vim.git'
-Bundle 'rking/ag.vim'
-Bundle 'ivanov/vim-ipython'
-Bundle 'sjl/gundo.vim'
-Bundle 'elzr/vim-json'
-Bundle 'jamessan/vim-gnupg'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'neilagabriel/vim-geeknote'
-Bundle 'nicwest/QQ.vim'
-Bundle 'idanarye/vim-merginal'
-Bundle 'ryanss/vim-hackernews'
-Bundle 'majutsushi/tagbar'
-Bundle 'fatih/vim-go'
-Bundle 'fmoralesc/vim-pad.git'
-Bundle 'mhinz/vim-rfc.git'
-Bundle 'tmux-plugins/vim-tmux'
-Bundle 'sbl/scvim.git'
+Plug 'mattn/gist-vim'
+Plug 'Lokaltog/powerline'
+Plug 'mattn/webapi-vim'
+Plug 'hallison/vim-markdown'
+Plug 'suan/vim-instant-markdown'
+Plug 'vim-ruby/vim-ruby'
+Plug 'iptables'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/YankRing.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'davidhalter/jedi-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'saltstack/salt-vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'jplaut/vim-arduino-ino'
+Plug 'kien/ctrlp.vim'
+Plug 'honza/dockerfile.vim'
+Plug 'rking/ag.vim'
+Plug 'ivanov/vim-ipython'
+Plug 'sjl/gundo.vim'
+Plug 'elzr/vim-json'
+Plug 'jamessan/vim-gnupg'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'neilagabriel/vim-geeknote'
+Plug 'nicwest/QQ.vim'
+Plug 'idanarye/vim-merginal'
+Plug 'ryanss/vim-hackernews'
+Plug 'majutsushi/tagbar'
+Plug 'fatih/vim-go'
+Plug 'fmoralesc/vim-pad'
+Plug 'mhinz/vim-rfc'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'sbl/scvim'
 
 " Colorscheme bundles
-Bundle 'gregsexton/Muon.git'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'sickill/vim-monokai.git'
-Bundle 'w0ng/vim-hybrid.git'
-Bundle 'zeis/vim-kolor.git'
+Plug 'gregsexton/Muon'
+Plug 'nanotech/jellybeans.vim'
+Plug 'sickill/vim-monokai'
+Plug 'w0ng/vim-hybrid'
+Plug 'zeis/vim-kolor'
+
+call plug#end()
 
 " ================ VIM Powerline ====================
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
 
 if ! has('gui_running')
     set ttimeoutlen=10
@@ -249,7 +245,7 @@ nmap <leader>fj :%!jq '.'<CR>
 
 " NERDtree
 let g:NERDTreeWinSize = 40
-" autocmd vimenter * if !argc() | NERDTree | endif
+autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeShowBookmarks = 1
 
 " mkdir on save if path does not exist
