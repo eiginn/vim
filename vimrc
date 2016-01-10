@@ -11,7 +11,7 @@ filetype off     " required!
 set noswapfile
 set nobackup
 set nowb
-set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ 10
+set guifont=Hack\ 10
 
 " =============== Mouse Support =====================
 
@@ -39,7 +39,7 @@ Plug 'mattn/webapi-vim'
 Plug 'hallison/vim-markdown'
 Plug 'suan/vim-instant-markdown'
 Plug 'vim-ruby/vim-ruby'
-Plug 'iptables'
+Plug 'eiginn/iptables-vim'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/YankRing.vim'
@@ -68,6 +68,8 @@ Plug 'fmoralesc/vim-pad'
 Plug 'mhinz/vim-rfc'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'sbl/scvim'
+Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-github-dashboard'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -307,6 +309,10 @@ let g:pad#dir = "~/.vim-pad/"
 
 " highlight changes
 let python_highlight_all = 1
+
+" githup dashboard
+source ~/.vim-ghd.vim
+let g:github_dashboard = { 'username': GITHUB_USER, 'password': GITHUB_TOKEN }
 
 " ranger as file explorer
 function RangerExplorer()
