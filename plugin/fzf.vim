@@ -1,0 +1,1 @@
+/home/vaelen/.fzf/plugin/fzf.vim
