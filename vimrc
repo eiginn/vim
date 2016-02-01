@@ -56,7 +56,7 @@ Plug 'rking/ag.vim'
 Plug 'ivanov/vim-ipython'
 Plug 'sjl/gundo.vim'
 Plug 'elzr/vim-json'
-Plug 'jamessan/vim-gnupg'
+"Plug 'jamessan/vim-gnupg'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neilagabriel/vim-geeknote'
 Plug 'nicwest/QQ.vim'
@@ -102,8 +102,12 @@ filetype plugin indent on
 let base16colorspace=256  " Access colors present in 256 colorspace
 let g:Powerline_symbols = 'fancy'
 "autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
-color jellybeans
+if has('gui_running')
+    color itg_flat
+else
+    autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
+    color jellybeans
+endif
 
 if v:version >= 703
   "undo settings
@@ -324,3 +328,8 @@ function RangerExplorer()
     redraw!
 endfun
 map <Leader>x :call RangerExplorer()<CR>
+
+command Q qa!
+
+" need something for rst/md/plain to enable spellchecking
+" set spell spelllang=en_us
