@@ -105,7 +105,7 @@ let g:Powerline_symbols = 'fancy'
 if has('gui_running')
     color itg_flat
 else
-    autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
+"    autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
     color jellybeans
 endif
 
