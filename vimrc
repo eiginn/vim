@@ -67,16 +67,15 @@ Plug 'fatih/vim-go'
 Plug 'fmoralesc/vim-pad'
 Plug 'mhinz/vim-rfc'
 Plug 'tmux-plugins/vim-tmux'
-Plug 'sbl/scvim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-github-dashboard'
+Plug 'guns/xterm-color-table.vim'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
 Plug 'nanotech/jellybeans.vim'
-Plug 'sickill/vim-monokai'
-Plug 'w0ng/vim-hybrid'
-Plug 'zeis/vim-kolor'
+Plug 'scwood/vim-hybrid'
+Plug 'marcopaganini/termschool-vim-theme'
 
 call plug#end()
 
@@ -99,22 +98,31 @@ syntax on
 filetype plugin indent on
 
 " look and feel
-let base16colorspace=256  " Access colors present in 256 colorspace
 let g:Powerline_symbols = 'fancy'
 "autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+set background=dark
 if has('gui_running')
-    color itg_flat
+    color hybrid
+    let g:indent_guides_auto_colors = 1
 else
-"    autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
-    color jellybeans
+    autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
+    colorscheme hybrid
+    let g:indent_guides_auto_colors = 0
+    hi IndentGuidesOdd  ctermbg=234
+    hi IndentGuidesEven ctermbg=245
 endif
+" indent guides
+"let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+hi IndentGuidesOdd  ctermbg=12
+hi IndentGuidesEven ctermbg=245
 
 if v:version >= 703
-  "undo settings
-  set undodir=~/.vim/undofiles
-  set undofile
-
-"  set colorcolumn=+1 "mark the ideal max text width
+    "undo settings
+    set undodir=~/.vim/undofiles
+    set undofile
+"    set colorcolumn=+1 "mark the ideal max text width
 endif
 
 " manually set leader
@@ -168,10 +176,10 @@ nmap <C-N><C-N> :set invnumber<CR>
 
 " git commit options
 if has('autocmd')
-  if has('spell')
-    au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
-  endif
-  au BufNewFile,BufRead COMMIT_EDITMSG call feedkeys('ggi', 't')
+    if has('spell')
+        au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
+    endif
+    au BufNewFile,BufRead COMMIT_EDITMSG call feedkeys('ggi', 't')
 endif
 
 " paste mode toggle
@@ -243,11 +251,6 @@ nnoremap <silent> <F3> :YRShow<CR>
 
 " unnest JSON with jq utility
 nmap <leader>fj :%!jq '.'<CR>
-
-" jellybean settings
-"hi Normal          ctermfg=252 ctermbg=none
-"hi NonText         ctermfg=250 ctermbg=none
-" hi Normal cterm=NONE ctermbg=NONE
 
 " NERDtree
 let g:NERDTreeWinSize = 40
