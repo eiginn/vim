@@ -11,7 +11,7 @@ filetype off     " required!
 set noswapfile
 set nobackup
 set nowb
-set guifont=Hack\ 10
+set guifont=Hack\ 12
 
 " =============== Mouse Support =====================
 
@@ -34,8 +34,8 @@ call plug#begin('~/.vim/plugged')
 
 " Plugin bundles
 Plug 'mattn/gist-vim'
-Plug 'Lokaltog/powerline'
 Plug 'mattn/webapi-vim'
+Plug 'Lokaltog/powerline'
 Plug 'hallison/vim-markdown'
 Plug 'suan/vim-instant-markdown'
 Plug 'vim-ruby/vim-ruby'
@@ -182,6 +182,14 @@ if has('autocmd')
     au BufNewFile,BufRead COMMIT_EDITMSG call feedkeys('ggi', 't')
 endif
 
+" spellchack md files
+if has('autocmd')
+    if has('spell')
+        autocmd BufRead,BufNewFile *.md setlocal spell
+        autocmd BufRead,BufNewFile *.rst setlocal spell
+    endif
+endif
+
 " paste mode toggle
 set pastetoggle=<F2>
 
@@ -246,8 +254,11 @@ function! MyToHtml(line1, line2)
 endfunction
 command! -range=% MyToHtml :call MyToHtml(<line1>,<line2>)
 
+" Yankring
 " show yankring in new buffer
 nnoremap <silent> <F3> :YRShow<CR>
+" yankring hist file
+let g:yankring_history_file = '.yankring_history'
 
 " unnest JSON with jq utility
 nmap <leader>fj :%!jq '.'<CR>
