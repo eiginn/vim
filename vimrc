@@ -37,39 +37,35 @@ Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'Lokaltog/powerline'
 Plug 'hallison/vim-markdown'
-Plug 'suan/vim-instant-markdown'
-Plug 'vim-ruby/vim-ruby'
 Plug 'eiginn/iptables-vim'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'saltstack/salt-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'jplaut/vim-arduino-ino'
 Plug 'kien/ctrlp.vim'
 Plug 'honza/dockerfile.vim'
 Plug 'rking/ag.vim'
 Plug 'ivanov/vim-ipython'
 Plug 'sjl/gundo.vim'
 Plug 'elzr/vim-json'
-"Plug 'jamessan/vim-gnupg'
+Plug 'jamessan/vim-gnupg'
 Plug 'nathanaelkane/vim-indent-guides'
-"Plug 'neilagabriel/vim-geeknote'
 Plug 'nicwest/QQ.vim'
 Plug 'idanarye/vim-merginal'
 Plug 'ryanss/vim-hackernews'
 Plug 'majutsushi/tagbar'
 Plug 'fatih/vim-go'
 Plug 'fmoralesc/vim-pad'
-Plug 'mhinz/vim-rfc'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-github-dashboard'
 Plug 'guns/xterm-color-table.vim'
+Plug 'Valloric/YouCompleteMe'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -113,7 +109,7 @@ else
 endif
 " indent guides
 "let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 hi IndentGuidesOdd  ctermbg=12
 hi IndentGuidesEven ctermbg=245
