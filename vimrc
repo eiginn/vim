@@ -43,7 +43,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-" Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'saltstack/salt-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -64,9 +64,7 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-github-dashboard'
 Plug 'guns/xterm-color-table.vim'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'cespare/vim-toml'
-Plug 'klen/python-mode'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -221,7 +219,7 @@ map Q <Nop>
 set completeopt=menuone,longest,preview
 
 " Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
+nmap <F4> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
     if !exists("*synstack")
         return
@@ -344,3 +342,8 @@ command Q qa!
 
 " need something for rst/md/plain to enable spellchecking
 " set spell spelllang=en_us
+
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
