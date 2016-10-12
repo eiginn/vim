@@ -15,8 +15,8 @@ set guifont=Hack\ 12
 
 " =============== Mouse Support =====================
 
-set mouse=nvr
-"set mousem=popup
+" set mouse=nvr
+" set mousem=popup
 
 " ================ Indentation ======================
 
@@ -43,7 +43,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'davidhalter/jedi-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'saltstack/salt-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -65,6 +64,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-github-dashboard'
 Plug 'guns/xterm-color-table.vim'
 Plug 'cespare/vim-toml'
+Plug 'maralla/completor.vim'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
