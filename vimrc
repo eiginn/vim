@@ -65,6 +65,8 @@ Plug 'junegunn/vim-github-dashboard'
 Plug 'guns/xterm-color-table.vim'
 Plug 'cespare/vim-toml'
 Plug 'maralla/completor.vim'
+Plug 'mileszs/ack.vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -260,7 +262,10 @@ nmap <leader>fj :%!jq '.'<CR>
 
 " NERDtree
 let g:NERDTreeWinSize = 40
-autocmd vimenter * if !argc() | NERDTree | endif
+" autocmd vimenter * if !argc() | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeShowBookmarks = 1
 
 " mkdir on save if path does not exist
@@ -347,3 +352,10 @@ command Q qa!
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
+
+" ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
