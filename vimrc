@@ -38,7 +38,7 @@ Plug 'mattn/webapi-vim'
 Plug 'Lokaltog/powerline'
 Plug 'hallison/vim-markdown'
 Plug 'eiginn/iptables-vim'
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'tpope/vim-fugitive'
@@ -67,6 +67,9 @@ Plug 'cespare/vim-toml'
 Plug 'maralla/completor.vim'
 Plug 'mileszs/ack.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'klen/python-mode'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -95,6 +98,13 @@ syntax on
 filetype plugin indent on
 
 " look and feel
+let g:jellybeans_overrides = {
+\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+\}
+
+"if has('termguicolors')
+"    set termguicolors
+"endif
 let g:Powerline_symbols = 'fancy'
 "autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 set background=dark
@@ -102,8 +112,8 @@ if has('gui_running')
     color hybrid
     let g:indent_guides_auto_colors = 1
 else
-    autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
-    colorscheme hybrid
+    "autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
+    colorscheme jellybeans
     let g:indent_guides_auto_colors = 0
     hi IndentGuidesOdd  ctermbg=234
     hi IndentGuidesEven ctermbg=245
@@ -132,7 +142,7 @@ set wildmode=list:longest,full
 " Gist stuff
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
-let g:gist_clip_command = 'xclip -selection clipboard'
+let g:gist_clip_command = 'xsel -ib'
 let g:gist_get_multiplefile = 1
 let g:gist_update_on_write = 2
 let g:gist_list_vsplit = 1
@@ -213,6 +223,16 @@ map Q <Nop>
 " =============== Python ===================
 " Execute file being edited with <Shift> + e:
 "map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
+
+let g:pymode_rope = 0
+let g:pymode_rope_lookup_project = 0
+"let g:pymode_python = 'python'
+let g:pymode_indent = 1
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint', 'mccabe']
+let g:pymode_syntax = 1
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_unmodified = 0
 
 "au FileType python set omnifunc=pythoncomplete#Complete
 "let g:SuperTabDefaultCompletionType = "context"
@@ -352,6 +372,7 @@ command Q qa!
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_checkers = ['pylint', 'pyflakes']
 
 " ack.vim
 if executable('ag')
@@ -359,3 +380,10 @@ if executable('ag')
 endif
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
+
+" vim-notes
+let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
+
+" completor
+let g:completor_auto_trigger = 0
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
