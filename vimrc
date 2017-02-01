@@ -52,7 +52,7 @@ Plug 'ivanov/vim-ipython'
 Plug 'sjl/gundo.vim'
 Plug 'elzr/vim-json'
 Plug 'jamessan/vim-gnupg'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'nicwest/QQ.vim'
 Plug 'idanarye/vim-merginal'
 Plug 'ryanss/vim-hackernews'
@@ -105,25 +105,20 @@ let g:jellybeans_overrides = {
 "if has('termguicolors')
 "    set termguicolors
 "endif
+
 let g:Powerline_symbols = 'fancy'
 "autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 set background=dark
 if has('gui_running')
     color hybrid
-    let g:indent_guides_auto_colors = 1
 else
     "autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
     colorscheme jellybeans
-    let g:indent_guides_auto_colors = 0
-    hi IndentGuidesOdd  ctermbg=234
-    hi IndentGuidesEven ctermbg=245
 endif
-" indent guides
-"let g:indent_guides_guide_size = 1
-"let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-hi IndentGuidesOdd  ctermbg=12
-hi IndentGuidesEven ctermbg=245
+
+" indentlines
+let g:indentLine_setColors = 0
+let g:indentLine_char = '┆'
 
 if v:version >= 703
     "undo settings
