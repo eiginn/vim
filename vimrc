@@ -38,38 +38,37 @@ Plug 'mattn/webapi-vim'
 Plug 'Lokaltog/powerline'
 Plug 'hallison/vim-markdown'
 Plug 'eiginn/iptables-vim'
-Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'saltstack/salt-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 Plug 'honza/dockerfile.vim'
-Plug 'ivanov/vim-ipython'
 Plug 'sjl/gundo.vim'
 Plug 'elzr/vim-json'
 Plug 'jamessan/vim-gnupg'
 Plug 'Yggdroot/indentLine'
-Plug 'nicwest/QQ.vim'
+"Plug 'nicwest/QQ.vim'
 Plug 'idanarye/vim-merginal'
-Plug 'ryanss/vim-hackernews'
 Plug 'majutsushi/tagbar'
 Plug 'fatih/vim-go'
 Plug 'fmoralesc/vim-pad'
 Plug 'tmux-plugins/vim-tmux'
-Plug 'junegunn/vim-peekaboo'
-Plug 'junegunn/vim-github-dashboard'
-Plug 'guns/xterm-color-table.vim'
+"Plug 'junegunn/vim-peekaboo'
+"Plug 'junegunn/vim-github-dashboard'
 Plug 'cespare/vim-toml'
-Plug 'maralla/completor.vim'
+"Plug 'maralla/completor.vim'
 Plug 'mileszs/ack.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'klen/python-mode'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
+Plug 'w0rp/ale'
+Plug 'scrooloose/nerdcommenter'
+Plug 'aklt/plantuml-syntax'
+Plug 'scrooloose/vim-slumlord'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -119,6 +118,7 @@ endif
 " indentlines
 let g:indentLine_setColors = 0
 let g:indentLine_char = '┆'
+let g:indentLine_fileTypeExclude = ['text', 'help', 'nerdtree', 'note', 'json', 'notes']
 
 if v:version >= 703
     "undo settings
@@ -228,6 +228,14 @@ let g:pymode_syntax = 1
 let g:pymode_lint = 1
 let g:pymode_lint_on_write = 1
 let g:pymode_lint_unmodified = 0
+
+" ALE
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+"let g:ale_open_list = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
 
 "au FileType python set omnifunc=pythoncomplete#Complete
 "let g:SuperTabDefaultCompletionType = "context"
@@ -358,6 +366,18 @@ function RangerExplorer()
 endfun
 map <Leader>x :call RangerExplorer()<CR>
 
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+" EXIT ALL THE THINGS
 command Q qa!
 
 " need something for rst/md/plain to enable spellchecking
@@ -380,5 +400,5 @@ nnoremap <Leader>a :Ack!<Space>
 let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
 
 " completor
-let g:completor_auto_trigger = 0
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+"let g:completor_auto_trigger = 0
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
