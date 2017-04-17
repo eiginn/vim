@@ -6,7 +6,7 @@ set nocompatible
 set fillchars+=stl:\ ,stlnc:\
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show unicode glyphs
-set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
+"set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 filetype off     " required!
 set noswapfile
 set nobackup
@@ -44,31 +44,26 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'saltstack/salt-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
-"Plug 'kien/ctrlp.vim'
 Plug 'honza/dockerfile.vim'
 Plug 'sjl/gundo.vim'
 Plug 'elzr/vim-json'
 Plug 'jamessan/vim-gnupg'
 Plug 'Yggdroot/indentLine'
-"Plug 'nicwest/QQ.vim'
 Plug 'idanarye/vim-merginal'
 Plug 'majutsushi/tagbar'
 Plug 'fatih/vim-go'
 Plug 'fmoralesc/vim-pad'
 Plug 'tmux-plugins/vim-tmux'
-"Plug 'junegunn/vim-peekaboo'
-"Plug 'junegunn/vim-github-dashboard'
 Plug 'cespare/vim-toml'
-"Plug 'maralla/completor.vim'
 Plug 'mileszs/ack.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'klen/python-mode'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'aklt/plantuml-syntax'
 Plug 'scrooloose/vim-slumlord'
+Plug 'chr4/nginx.vim'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -96,23 +91,23 @@ set noshowmode
 syntax on
 filetype plugin indent on
 
-" look and feel
-let g:jellybeans_overrides = {
-\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
-\}
+if has('termguicolors')
+    set termguicolors
+endif
 
-"if has('termguicolors')
-"    set termguicolors
-"endif
+" look and feel
+"let g:jellybeans_overrides = {
+"\    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
+"\}
 
 let g:Powerline_symbols = 'fancy'
-"autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 set background=dark
 if has('gui_running')
-    color hybrid
+    colorscheme hybrid
 else
     "autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
-    colorscheme jellybeans
+    "colorscheme jellybeans
+    colorscheme hybrid
 endif
 
 " indentlines
@@ -184,7 +179,7 @@ if has('autocmd')
     au BufNewFile,BufRead COMMIT_EDITMSG call feedkeys('ggi', 't')
 endif
 
-" spellchack md files
+" spellcheck md files
 if has('autocmd')
     if has('spell')
         autocmd BufRead,BufNewFile *.md setlocal spell
