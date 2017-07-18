@@ -33,37 +33,39 @@ set expandtab
 call plug#begin('~/.vim/plugged')
 
 " Plugin bundles
-Plug 'mattn/gist-vim'
-Plug 'mattn/webapi-vim'
-Plug 'Lokaltog/powerline'
-Plug 'hallison/vim-markdown'
-Plug 'eiginn/iptables-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/YankRing.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'saltstack/salt-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'honza/dockerfile.vim'
-Plug 'sjl/gundo.vim'
-Plug 'elzr/vim-json'
-Plug 'jamessan/vim-gnupg'
+Plug 'Lokaltog/powerline'
+Plug 'SirVer/ultisnips'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
-Plug 'idanarye/vim-merginal'
-Plug 'majutsushi/tagbar'
+Plug 'airblade/vim-gitgutter'
+Plug 'aklt/plantuml-syntax'
+Plug 'cespare/vim-toml'
+Plug 'chr4/nginx.vim'
+Plug 'eiginn/iptables-vim'
+Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'fmoralesc/vim-pad'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'cespare/vim-toml'
+Plug 'hallison/vim-markdown'
+Plug 'honza/dockerfile.vim'
+Plug 'idanarye/vim-merginal'
+Plug 'jamessan/vim-gnupg'
+Plug 'majutsushi/tagbar'
+Plug 'maralla/completor.vim'
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
 Plug 'mileszs/ack.vim'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'xolox/vim-notes'
-Plug 'xolox/vim-misc'
-Plug 'w0rp/ale'
+Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'aklt/plantuml-syntax'
+Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/vim-slumlord'
-Plug 'chr4/nginx.vim'
+Plug 'sjl/gundo.vim'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-scripts/YankRing.vim'
+Plug 'w0rp/ale'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -91,9 +93,9 @@ set noshowmode
 syntax on
 filetype plugin indent on
 
-if has('termguicolors')
-    set termguicolors
-endif
+"if has('termguicolors')
+"    set termguicolors
+"endif
 
 " look and feel
 "let g:jellybeans_overrides = {
@@ -176,7 +178,7 @@ if has('autocmd')
     if has('spell')
         au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
     endif
-    au BufNewFile,BufRead COMMIT_EDITMSG call feedkeys('ggi', 't')
+    au BufNewFile,BufRead COMMIT_EDITMSG call feedkeys('ggA', 't')
 endif
 
 " spellcheck md files
@@ -346,10 +348,6 @@ let g:pad#dir = "~/.vim-pad/"
 " highlight changes
 let python_highlight_all = 1
 
-" githup dashboard
-source ~/.vim-ghd.vim
-let g:github_dashboard = { 'username': GITHUB_USER, 'password': GITHUB_TOKEN }
-
 " ranger as file explorer
 function RangerExplorer()
     exec "silent !ranger --choosefile=/tmp/vim_ranger_current_file " . expand("%:p:h")
@@ -397,3 +395,4 @@ let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
 " completor
 "let g:completor_auto_trigger = 0
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki', 'gitcommit', 'notes']
