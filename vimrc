@@ -10,8 +10,9 @@ set encoding=utf-8 " Necessary to show unicode glyphs
 filetype off     " required!
 set noswapfile
 set nobackup
-set nowb
+set nowritebackup
 set guifont=Hack\ 12
+set hlsearch
 
 " =============== Mouse Support =====================
 
@@ -21,10 +22,10 @@ set guifont=Hack\ 12
 " ================ Indentation ======================
 
 set autoindent
-set smartindent
+"set smartindent
 "set smarttab
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 "set tabstop=2
 set expandtab
 
@@ -49,7 +50,7 @@ Plug 'fmoralesc/vim-pad'
 Plug 'hallison/vim-markdown'
 Plug 'honza/dockerfile.vim'
 Plug 'idanarye/vim-merginal'
-Plug 'jamessan/vim-gnupg'
+"Plug 'jamessan/vim-gnupg'
 Plug 'majutsushi/tagbar'
 Plug 'maralla/completor.vim'
 Plug 'mattn/gist-vim'
@@ -66,6 +67,7 @@ Plug 'vim-scripts/YankRing.vim'
 Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
+Plug 'sunaku/vim-dasht'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -76,7 +78,7 @@ Plug 'marcopaganini/termschool-vim-theme'
 call plug#end()
 
 " ================ VIM Powerline ====================
-set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
+set runtimepath+=~/.vim/plugged/powerline/powerline/bindings/vim
 
 if ! has('gui_running')
     set ttimeoutlen=10
@@ -115,7 +117,7 @@ endif
 " indentlines
 let g:indentLine_setColors = 0
 let g:indentLine_char = '┆'
-let g:indentLine_fileTypeExclude = ['text', 'help', 'nerdtree', 'note', 'json', 'notes']
+let g:indentLine_fileTypeExclude = ['text', 'help', 'nerdtree', 'note', 'json', 'notes', 'gitcommit']
 
 if v:version >= 703
     "undo settings
@@ -125,7 +127,7 @@ if v:version >= 703
 endif
 
 " manually set leader
-let mapleader = '\'
+let g:mapleader = '\'
 
 " Enbale tab complete for commands
 set wildmenu
@@ -252,9 +254,9 @@ endfunc
 " Generate html without body tags
 function! MyToHtml(line1, line2)
   " make sure to generate in the correct format
-  let old_css = 1
+  let l:old_css = 1
   if exists('g:html_use_css')
-    let old_css = g:html_use_css
+    let l:old_css = g:html_use_css
   endif
   let g:html_use_css = 0
 
@@ -267,7 +269,7 @@ function! MyToHtml(line1, line2)
   %s#</body>\(.\|\n\)*</html>#\='</font></td></tr></table>'#i
 
   " restore old setting
-  let g:html_use_css = old_css
+  let g:html_use_css = l:old_css
 endfunction
 command! -range=% MyToHtml :call MyToHtml(<line1>,<line2>)
 
@@ -291,9 +293,9 @@ let g:NERDTreeShowBookmarks = 1
 " mkdir on save if path does not exist
 function s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
-        let dir=fnamemodify(a:file, ':h')
-        if !isdirectory(dir)
-            call mkdir(dir, 'p')
+        let l:dir=fnamemodify(a:file, ':h')
+        if !isdirectory(l:dir)
+            call mkdir(l:dir, 'p')
         endif
     endif
 endfunction
@@ -343,10 +345,10 @@ autocmd FileType geeknote setlocal nonumber
 nmap <silent> <leader>t :TagbarToggle<CR>
 
 " vim-pad
-let g:pad#dir = "~/.vim-pad/"
+let g:pad#dir = '~/.vim-pad/'
 
 " highlight changes
-let python_highlight_all = 1
+let g:python_highlight_all = 1
 
 " ranger as file explorer
 function RangerExplorer()
@@ -363,10 +365,10 @@ map <Leader>x :call RangerExplorer()<CR>
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
 function! AppendModeline()
-  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+  let l:modeline = printf(' vim: set ts=%d sw=%d tw=%d %set :',
         \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
-  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
-  call append(line("$"), l:modeline)
+  let l:modeline = substitute(&commentstring, '%s', l:modeline, '')
+  call append(line('$'), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
@@ -396,3 +398,14 @@ let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
 "let g:completor_auto_trigger = 0
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
 let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki', 'gitcommit', 'notes']
+
+let g:dasht_filetype_docsets = {} " filetype => list of docset name regexp
+let g:dasht_filetype_docsets['sls'] = ['SaltStack']
+" search related docsets
+vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
+" search ALL the docsets
+vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
+" search related docsets
+nnoremap <silent> <Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
+" search ALL the docsets
+nnoremap <silent> <Leader><Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
