@@ -67,7 +67,8 @@ Plug 'vim-scripts/YankRing.vim'
 Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-Plug 'sunaku/vim-dasht'
+Plug 'haya14busa/incsearch.vim'
+Plug 'stephpy/vim-yaml'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -396,16 +397,9 @@ let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
 
 " completor
 "let g:completor_auto_trigger = 0
+let g:completor_min_chars = 4
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
 let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki', 'gitcommit', 'notes']
 
-let g:dasht_filetype_docsets = {} " filetype => list of docset name regexp
-let g:dasht_filetype_docsets['sls'] = ['SaltStack']
-" search related docsets
-vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
-" search ALL the docsets
-vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
-" search related docsets
-nnoremap <silent> <Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
-" search ALL the docsets
-nnoremap <silent> <Leader><Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
+" Force using the Django template syntax file
+let g:sls_use_jinja_syntax = 1
