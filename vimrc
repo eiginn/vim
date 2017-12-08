@@ -50,7 +50,7 @@ Plug 'fmoralesc/vim-pad'
 Plug 'hallison/vim-markdown'
 Plug 'honza/dockerfile.vim'
 Plug 'idanarye/vim-merginal'
-"Plug 'jamessan/vim-gnupg'
+Plug 'jamessan/vim-gnupg'
 Plug 'majutsushi/tagbar'
 Plug 'maralla/completor.vim'
 Plug 'mattn/gist-vim'
@@ -101,18 +101,17 @@ filetype plugin indent on
 "endif
 
 " look and feel
-"let g:jellybeans_overrides = {
-"\    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
-"\}
+let g:jellybeans_overrides = {
+\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+\}
 
 let g:Powerline_symbols = 'fancy'
 set background=dark
 if has('gui_running')
     colorscheme hybrid
 else
-    "autocmd ColorScheme * so $HOME/.vim/rmbackground.vim
-    "colorscheme jellybeans
-    colorscheme hybrid
+    colorscheme jellybeans
+    "colorscheme hybrid
 endif
 
 " indentlines
@@ -403,3 +402,13 @@ let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki', 'gitco
 
 " Force using the Django template syntax file
 let g:sls_use_jinja_syntax = 1
+
+function! GPGinfo() range
+  let bytecode = system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| sed -e "s/^[ \t]*//" -e "s/\\\//g" | gpg --list-packets')
+  vsplit __GPG_INFO__
+  normal! ggdG
+  setlocal filetype=text
+  setlocal buftype=nofile
+  call append(0, split(bytecode, '\v\n'))
+endfun
+command! -range GPGinfo <line1>,<line2>call GPGinfo()
