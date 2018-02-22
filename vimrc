@@ -69,6 +69,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'haya14busa/incsearch.vim'
 Plug 'stephpy/vim-yaml'
+Plug 'easymotion/vim-easymotion'
 
 " Colorscheme bundles
 Plug 'gregsexton/Muon'
@@ -412,3 +413,10 @@ function! GPGinfo() range
   call append(0, split(bytecode, '\v\n'))
 endfun
 command! -range GPGinfo <line1>,<line2>call GPGinfo()
+
+function! CFPaste() range
+  let url = system('echo -n '.shellescape(join(getline(a:firstline, a:lastline), "\r")).'| cf-paste')
+  echon split(url, '\n')[0].'/raw'
+endfun
+" range=% tells it to send whole buffer if no lines selected
+command! -range=% CFPaste <line1>,<line2>call CFPaste()
