@@ -97,13 +97,13 @@ set noshowmode
 syntax on
 filetype plugin indent on
 
-"if has('termguicolors')
-"    set termguicolors
-"endif
+if has('termguicolors')
+    set termguicolors
+endif
 
 " look and feel
 let g:jellybeans_overrides = {
-\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+\    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
 \}
 
 let g:Powerline_symbols = 'fancy'
