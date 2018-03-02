@@ -76,6 +76,7 @@ Plug 'gregsexton/Muon'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scwood/vim-hybrid'
 Plug 'marcopaganini/termschool-vim-theme'
+Plug 'KabbAmine/yowish.vim'
 
 call plug#end()
 
@@ -107,12 +108,10 @@ let g:jellybeans_overrides = {
 \}
 
 let g:Powerline_symbols = 'fancy'
-set background=dark
 if has('gui_running')
     colorscheme hybrid
 else
     colorscheme jellybeans
-    "colorscheme hybrid
 endif
 
 " indentlines
@@ -124,7 +123,6 @@ if v:version >= 703
     "undo settings
     set undodir=~/.vim/undofiles
     set undofile
-"    set colorcolumn=+1 "mark the ideal max text width
 endif
 
 " manually set leader
@@ -149,11 +147,7 @@ set scrolloff=4
 cmap w!! w !sudo tee % >/dev/null
 
 " clipboard settings and remappings
-"set clipboard+=unnamed
 set clipboard=unnamedplus
-
-" highlight cursor line
-"set cursorline
 
 " make wrapped lines easier to spot
 let &showbreak=repeat('>', 3)
