@@ -13,6 +13,7 @@ set nobackup
 set nowritebackup
 set guifont=Hack\ 12
 set hlsearch
+set incsearch
 
 " =============== Mouse Support =====================
 
@@ -37,7 +38,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Lokaltog/powerline'
 Plug 'SirVer/ultisnips'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'aklt/plantuml-syntax'
@@ -59,6 +59,8 @@ Plug 'mileszs/ack.vim'
 Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'scrooloose/vim-slumlord'
 Plug 'sjl/gundo.vim'
 Plug 'tmux-plugins/vim-tmux'
@@ -71,12 +73,13 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'easymotion/vim-easymotion'
 
-" Colorscheme bundles
+" Look and Feel bundles
 Plug 'gregsexton/Muon'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scwood/vim-hybrid'
 Plug 'marcopaganini/termschool-vim-theme'
 Plug 'KabbAmine/yowish.vim'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -99,7 +102,12 @@ syntax on
 filetype plugin indent on
 
 if has('termguicolors')
-    set termguicolors
+  if !empty($TMUX)
+    " yes thats an escape code "^[" is done via Ctrl+V then ESC
+    set t_8f=[38;2;%lu;%lu;%lum
+    set t_8b=[48;2;%lu;%lu;%lum
+  endif
+  set termguicolors
 endif
 
 " look and feel
@@ -155,6 +163,10 @@ let &showbreak=repeat('>', 3)
 " let /-style searches case-sensitive only if there is a capital letter
 set ignorecase
 set smartcase
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 " set terminal title
 set title
@@ -163,9 +175,6 @@ set title
 set listchars=tab:>-,trail:·,eol:$
 nmap <leader>s :set nolist!<CR>
 set listchars=tab:»-,trail:•,eol:¶,nbsp:⎵,precedes:«,extends:» sbr=↪
-
-" Highlight dynamically as pattern is typed
-set incsearch
 
 " toggle line numbering
 nmap <C-N><C-N> :set invnumber<CR>
@@ -279,6 +288,7 @@ nmap <leader>fj :%!jq '.'<CR>
 
 " NERDtree
 let g:NERDTreeWinSize = 40
+let g:NERDTreeHighlightCursorline = 0
 " autocmd vimenter * if !argc() | NERDTree | endif
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
