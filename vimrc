@@ -69,9 +69,7 @@ Plug 'vim-scripts/YankRing.vim'
 Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-Plug 'haya14busa/incsearch.vim'
 Plug 'stephpy/vim-yaml'
-Plug 'easymotion/vim-easymotion'
 
 " Look and Feel bundles
 Plug 'gregsexton/Muon'
@@ -163,10 +161,6 @@ let &showbreak=repeat('>', 3)
 " let /-style searches case-sensitive only if there is a capital letter
 set ignorecase
 set smartcase
-" incsearch
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
 
 " set terminal title
 set title
