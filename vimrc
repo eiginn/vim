@@ -99,7 +99,7 @@ set noshowmode
 syntax on
 filetype plugin indent on
 
-if has('termguicolors')
+if has('termguicolors') && $USER != 'root'
   if !empty($TMUX)
     " yes thats an escape code "^[" is done via Ctrl+V then ESC
     set t_8f=[38;2;%lu;%lu;%lum
