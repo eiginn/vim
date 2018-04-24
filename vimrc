@@ -78,6 +78,7 @@ Plug 'scwood/vim-hybrid'
 Plug 'marcopaganini/termschool-vim-theme'
 Plug 'KabbAmine/yowish.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'jacoborus/tender.vim'
 
 call plug#end()
 
@@ -108,15 +109,13 @@ if has('termguicolors') && $USER != 'root'
   set termguicolors
 endif
 
-" look and feel
-let g:jellybeans_overrides = {
-\    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
-\}
-
 let g:Powerline_symbols = 'fancy'
 if has('gui_running')
-    colorscheme hybrid
+    colorscheme jellybeans
 else
+    let g:jellybeans_overrides = {
+    \    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
+    \}
     colorscheme jellybeans
 endif
 
