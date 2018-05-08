@@ -50,7 +50,7 @@ Plug 'fmoralesc/vim-pad'
 Plug 'hallison/vim-markdown'
 Plug 'honza/dockerfile.vim'
 Plug 'idanarye/vim-merginal'
-Plug 'jamessan/vim-gnupg'
+"Plug 'jamessan/vim-gnupg'
 Plug 'majutsushi/tagbar'
 Plug 'maralla/completor.vim'
 Plug 'mattn/gist-vim'
@@ -70,6 +70,7 @@ Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'stephpy/vim-yaml'
+Plug 'ConradIrwin/vim-bracketed-paste'
 
 " Look and Feel bundles
 Plug 'gregsexton/Muon'
@@ -122,7 +123,7 @@ endif
 " indentlines
 let g:indentLine_setColors = 0
 let g:indentLine_char = '┆'
-let g:indentLine_fileTypeExclude = ['text', 'help', 'nerdtree', 'note', 'json', 'notes', 'gitcommit']
+let g:indentLine_fileTypeExclude = ['text', 'help', 'nerdtree', 'note', 'json', 'notes', 'gitcommit', 'diff']
 
 if v:version >= 703
     "undo settings
