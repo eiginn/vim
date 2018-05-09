@@ -35,9 +35,11 @@ set expandtab
 call plug#begin('~/.vim/plugged')
 
 " Plugin bundles
+Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Lokaltog/powerline'
 Plug 'SirVer/ultisnips'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'aklt/plantuml-syntax'
@@ -59,18 +61,16 @@ Plug 'mileszs/ack.vim'
 Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'scrooloose/vim-slumlord'
 Plug 'sjl/gundo.vim'
+Plug 'stephpy/vim-yaml'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-Plug 'stephpy/vim-yaml'
-Plug 'ConradIrwin/vim-bracketed-paste'
 
 " Look and Feel bundles
 Plug 'gregsexton/Muon'
