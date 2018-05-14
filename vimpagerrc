@@ -2,3 +2,16 @@ let vimpager_scrolloff = 3
 let vimpager_passthrough = 1
 set t_ti= t_te=
 set mouse = ""
+set hlsearch
+set incsearch
+
+set runtimepath+=~/.vim/plugged/jellybeans.vim
+
+if has('gui_running')
+    colorscheme jellybeans
+else
+    let g:jellybeans_overrides = {
+    \    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
+    \}
+    colorscheme jellybeans
+endif
