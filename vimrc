@@ -11,9 +11,10 @@ filetype off     " required!
 set noswapfile
 set nobackup
 set nowritebackup
-set guifont=Hack\ 12
+set guifont=Hack\ Nerd\ Font\ Mono\ 12
 set hlsearch
 set incsearch
+set updatetime=250
 
 " =============== Mouse Support =====================
 
@@ -80,6 +81,8 @@ Plug 'marcopaganini/termschool-vim-theme'
 Plug 'KabbAmine/yowish.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jacoborus/tender.vim'
+Plug 'morhetz/gruvbox'
+Plug 'trevordmiller/nova-vim'
 
 call plug#end()
 
@@ -93,6 +96,7 @@ if ! has('gui_running')
         au InsertEnter * set timeoutlen=0
         au InsertLeave * set timeoutlen=1000
     augroup END
+    "set lazyredraw
 endif
 set noshowmode
 
@@ -228,6 +232,8 @@ let g:pymode_lint_unmodified = 0
 
 " ALE
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" helps reduce lag when moving cursor fast
+let g:ale_echo_delay = 50
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 "let g:ale_open_list = 1
@@ -308,8 +314,8 @@ au BufRead,BufNewFile *.pde set filetype=arduino
 au BufRead,BufNewFile *.ino set filetype=arduino
 
 " Gitgutter
-let g:gitgutter_eager = 0
-let g:gitgutter_realtime = 0
+"let g:gitgutter_eager = 0
+"let g:gitgutter_realtime = 0
 
 " color lines over 80 columns
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
