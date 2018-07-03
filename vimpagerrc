@@ -4,6 +4,8 @@ set t_ti= t_te=
 set mouse = ""
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 set runtimepath+=~/.vim/plugged/jellybeans.vim
 
