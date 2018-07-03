@@ -424,3 +424,7 @@ function! CFPaste() range
 endfun
 " range=% tells it to send whole buffer if no lines selected
 command! -range=% CFPaste <line1>,<line2>call CFPaste()
+
+" NERD Commenter
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
