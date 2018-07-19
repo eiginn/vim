@@ -74,14 +74,15 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 
 " Look and Feel bundles
-Plug 'gregsexton/Muon'
-Plug 'nanotech/jellybeans.vim'
-Plug 'scwood/vim-hybrid'
-Plug 'marcopaganini/termschool-vim-theme'
+Plug 'KKPMW/sacredforest-vim'
 Plug 'KabbAmine/yowish.vim'
-Plug 'ryanoasis/vim-devicons'
+Plug 'gregsexton/Muon'
 Plug 'jacoborus/tender.vim'
+Plug 'marcopaganini/termschool-vim-theme'
 Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scwood/vim-hybrid'
 Plug 'trevordmiller/nova-vim'
 
 call plug#end()
