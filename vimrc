@@ -25,7 +25,7 @@ set spelllang=en_us
 
 " attempts to speed up terminal vim
 " https://github.com/vim/vim/issues/2712
-set regexpengine=1
+"set regexpengine=1
 
 " make wrapped lines easier to spot
 let &showbreak=repeat('>', 3)
@@ -78,7 +78,7 @@ set softtabstop=2
 "set tabstop=2
 set expandtab
 
-" =================== Vundle ========================
+" =================== vim-plug ========================
 
 call plug#begin('~/.vim/plugged')
 
@@ -92,25 +92,26 @@ Plug 'chr4/nginx.vim'
 Plug 'eiginn/iptables-vim'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
+Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
 Plug 'hallison/vim-markdown'
-"Plug 'jamessan/vim-gnupg'
+Plug 'jamessan/vim-gnupg'
 Plug 'majutsushi/tagbar'
 Plug 'maralla/completor.vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
-"Plug 'mileszs/ack.vim'
-"Plug 'saltstack/salt-vim'
+Plug 'mileszs/ack.vim'
+Plug 'rhysd/committia.vim'
+Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'stephpy/vim-yaml'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 " NERDTree related
 Plug 'scrooloose/nerdtree'
@@ -151,6 +152,7 @@ else
     \}
     colorscheme jellybeans
 endif
+let g:airline_theme='jellybeans'
 
 " indentlines
 let g:indentLine_setColors = 0
@@ -199,11 +201,7 @@ map Q <Nop>
 " EXIT ALL THE THINGS
 command Q qa!
 
-
-" =============== Python ===================
-" Execute file being edited with <Shift> + e:
-"map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
-
+" pymode
 let g:pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
 "let g:pymode_python = 'python'
@@ -256,6 +254,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "let g:gitgutter_eager = 0
 "let g:gitgutter_realtime = 0
 
+let g:committia_open_only_vim_starting = 0
+
 " gnupg options
 let g:GPGPreferArmor = 1
 let g:GPGPreferSign = 1
@@ -281,3 +281,6 @@ let g:sls_use_jinja_syntax = 1
 " NERD Commenter
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
+
+" vim-pad
+let g:pad#dir = '/home/vaelen/.vim-pad'
