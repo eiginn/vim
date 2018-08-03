@@ -80,7 +80,7 @@ command! -range GPGinfo <line1>,<line2>call GPGinfo()
 
 function! CFPaste() range
   let url = system('echo -n '.shellescape(join(getline(a:firstline, a:lastline), "\r")).'| cf-paste')
-  echon split(url, '\n')[0].'/raw'
+  echon split(url, '\n')[0]
 endfun
 " range=% tells it to send whole buffer if no lines selected
 command! -range=% CFPaste <line1>,<line2>call CFPaste()
