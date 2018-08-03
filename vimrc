@@ -21,6 +21,7 @@ set clipboard=unnamedplus
 set nofoldenable " Turn off folding
 set scrolloff=4 " keep n lines visible above and below the cursor
 set spelllang=en_us
+set noshowmode
 
 
 " attempts to speed up terminal vim
@@ -91,15 +92,17 @@ Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
 Plug 'eiginn/iptables-vim'
 Plug 'elzr/vim-json'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
 Plug 'hallison/vim-markdown'
-Plug 'jamessan/vim-gnupg'
+"Plug 'jamessan/vim-gnupg'
+Plug 'junegunn/vim-emoji'
 Plug 'majutsushi/tagbar'
 Plug 'maralla/completor.vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mileszs/ack.vim'
+"Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
 Plug 'rhysd/committia.vim'
 Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
@@ -131,9 +134,7 @@ Plug 'scwood/vim-hybrid'
 Plug 'trevordmiller/nova-vim'
 
 call plug#end()
-
-" === Things that need to be run after plugins ===
-set noshowmode
+" MUST be run after pluggins loaded
 syntax on
 filetype plugin indent on
 
