@@ -37,17 +37,26 @@ set smartcase
 
 " fix up escape to normal mode speed
 if ! has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-    "set lazyredraw
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+  "set lazyredraw
+
+  " Cursor shape in terminal
+  " vertical line for insert mode
+  "let &t_SI = "\<Esc>[6 q"
+  " underline for replace mode
+  "let &t_SR = "\<Esc>[4 q"
+  " block for normal mode
+  "let &t_EI = "\<Esc>[2 q"
 endif
 
 " settings for true color and tmux escapes for true color
-if has('termguicolors') && $USER != 'root'
+" don't run any of this in a vimdiff session
+if has('termguicolors') && $USER != 'root' && !&diff
   if !empty($TMUX)
     " yes thats an escape code "^[" is done via Ctrl+V then ESC
     set t_8f=[38;2;%lu;%lu;%lum
@@ -98,7 +107,6 @@ Plug 'hallison/vim-markdown'
 "Plug 'jamessan/vim-gnupg'
 Plug 'junegunn/vim-emoji'
 Plug 'majutsushi/tagbar'
-Plug 'maralla/completor.vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mileszs/ack.vim'
@@ -109,9 +117,11 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'stephpy/vim-yaml'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-fugitive'
+Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/YankRing.vim'
+Plug 'vimwiki/vimwiki'
 Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
@@ -132,6 +142,7 @@ Plug 'morhetz/gruvbox'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scwood/vim-hybrid'
 Plug 'trevordmiller/nova-vim'
+Plug 'nightsense/snow'
 
 call plug#end()
 " MUST be run after pluggins loaded
@@ -271,9 +282,9 @@ let g:python_highlight_all = 1
 let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
 
 " completor
-"let g:completor_auto_trigger = 0
+let g:completor_auto_trigger = 0
+inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
 let g:completor_min_chars = 4
-"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
 let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki', 'gitcommit', 'notes']
 
 " Force using the Django template syntax file
