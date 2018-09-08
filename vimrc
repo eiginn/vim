@@ -99,6 +99,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
+Plug 'easymotion/vim-easymotion'
 Plug 'eiginn/iptables-vim'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -212,6 +213,9 @@ map Q <Nop>
 
 " EXIT ALL THE THINGS
 command Q qa!
+
+" easymotion
+map <Leader> <Plug>(easymotion-prefix)
 
 " pymode
 let g:pymode_rope = 0
