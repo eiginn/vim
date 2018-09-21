@@ -232,8 +232,8 @@ let g:pymode_lint_unmodified = 0
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " helps reduce lag when moving cursor fast
 let g:ale_echo_delay = 50
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+"let g:ale_set_loclist = 0
+"let g:ale_set_quickfix = 1
 "let g:ale_open_list = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
