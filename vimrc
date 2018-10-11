@@ -16,6 +16,7 @@ set hlsearch
 set incsearch
 set updatetime=250
 set title
+set titleold=
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set clipboard=unnamedplus
 set nofoldenable " Turn off folding
