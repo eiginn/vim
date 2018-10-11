@@ -104,10 +104,13 @@ Plug 'easymotion/vim-easymotion'
 Plug 'eiginn/iptables-vim'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'fatih/vim-hclfmt'
 Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
 Plug 'hallison/vim-markdown'
 "Plug 'jamessan/vim-gnupg'
 Plug 'junegunn/vim-emoji'
+Plug 'jvirtanen/vim-hcl'
+Plug 'lervag/wiki.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
@@ -117,16 +120,18 @@ Plug 'rhysd/committia.vim'
 Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'stephpy/vim-yaml'
+Plug 'tikhomirov/vim-glsl'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-fugitive'
 Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/YankRing.vim'
-Plug 'vimwiki/vimwiki'
 Plug 'w0rp/ale'
+"Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
+Plug 'zah/nim.vim'
 
 " NERDTree related
 Plug 'scrooloose/nerdtree'
@@ -142,9 +147,9 @@ Plug 'jacoborus/tender.vim'
 Plug 'marcopaganini/termschool-vim-theme'
 Plug 'morhetz/gruvbox'
 Plug 'nanotech/jellybeans.vim'
+Plug 'nightsense/snow'
 Plug 'scwood/vim-hybrid'
 Plug 'trevordmiller/nova-vim'
-Plug 'nightsense/snow'
 
 call plug#end()
 " MUST be run after pluggins loaded
@@ -301,3 +306,6 @@ let g:NERDDefaultAlign = 'left'
 
 " vim-pad
 let g:pad#dir = '/home/vaelen/.vim-pad'
+
+" wiki
+let g:wiki_root = '~/.wiki'
