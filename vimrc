@@ -103,7 +103,7 @@ Plug 'chr4/nginx.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'eiginn/iptables-vim'
 Plug 'elzr/vim-json'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'fatih/vim-hclfmt'
 Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
 Plug 'hallison/vim-markdown'
