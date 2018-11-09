@@ -78,6 +78,16 @@ function! GPGinfo() range
 endfun
 command! -range GPGinfo <line1>,<line2>call GPGinfo()
 
+function! Certdump() range
+  let bytecode = system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| sed -e "s/^[ \t]*//" -e "s/\\\//g" | certdump')
+  vsplit __CERTDUMP__
+  normal! ggdG
+  setlocal filetype=text
+  setlocal buftype=nofile
+  call append(0, split(bytecode, '\v\n'))
+endfun
+command! -range Certdump <line1>,<line2>call Certdump()
+
 function! CFPaste() range
   let url = system('echo -n '.shellescape(join(getline(a:firstline, a:lastline), "\r")).'| cf-paste')
   echon split(url, '\n')[0]
@@ -85,3 +95,13 @@ endfun
 " range=% tells it to send whole buffer if no lines selected
 command! -range=% CFPaste <line1>,<line2>call CFPaste()
 
+au BufEnter * call MyLastWindow()
+function! MyLastWindow()
+  " if the window is quickfix go on
+  if &buftype=="quickfix"
+    " if this window is last on screen quit without warning
+    if winnr('$') < 2
+      quit!
+    endif
+  endif
+endfunction

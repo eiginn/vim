@@ -276,7 +276,17 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "let g:gitgutter_eager = 0
 "let g:gitgutter_realtime = 0
 
+" committia
+let g:committia_hooks = {}
 let g:committia_open_only_vim_starting = 0
+function! g:committia_hooks.edit_open(info)
+  setlocal spell
+  "if a:info.vcs ==# 'git' && getline(1) ==# ''
+    startinsert
+  "endif
+  " See ftplugin/gitcommit.vim
+  au BufWinEnter COMMIT_EDITMSG call g:InsertModeEOL()
+endfunction
 
 " gnupg options
 let g:GPGPreferArmor = 1
@@ -309,3 +319,7 @@ let g:pad#dir = '/home/vaelen/.vim-pad'
 
 " wiki
 let g:wiki_root = '~/.wiki'
+
+" fugitive
+" open quickfix list after any :Glog or :Ggrep
+autocmd QuickFixCmdPost *grep* cwindow
