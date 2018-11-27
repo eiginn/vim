@@ -114,6 +114,7 @@ Plug 'lervag/wiki.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
+Plug 'maralla/completor.vim'
 Plug 'mileszs/ack.vim'
 "Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
 Plug 'rhysd/committia.vim'
@@ -123,7 +124,6 @@ Plug 'stephpy/vim-yaml'
 Plug 'tikhomirov/vim-glsl'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-fugitive'
-Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/YankRing.vim'
@@ -243,9 +243,6 @@ let g:ale_echo_delay = 50
 "let g:ale_open_list = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
-
-"au FileType python set omnifunc=pythoncomplete#Complete
-"let g:SuperTabDefaultCompletionType = "context"
 
 " load extra functions and their mappings
 if filereadable(expand("~/.vim/functions.vim"))
