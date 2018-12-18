@@ -23,6 +23,8 @@ set nofoldenable " Turn off folding
 set scrolloff=4 " keep n lines visible above and below the cursor
 set spelllang=en_us
 set noshowmode
+" algorithim is the only non-default here, helps with iptables diffs
+set diffopt=internal,filler,algorithm:patience
 
 
 " attempts to speed up terminal vim
@@ -76,7 +78,7 @@ endif
 set wildmenu
 set wildmode=list:longest,full
 " Tab cycle through complete options
-set completeopt=menuone,longest,preview
+set completeopt=menu,preview,noinsert
 
 
 " ================ Indentation ======================
@@ -299,8 +301,10 @@ let g:python_highlight_all = 1
 let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
 
 " completor
-let g:completor_auto_trigger = 0
-inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
+let g:completor_auto_trigger = 1
+let g:completor_gocode_binary = '/home/vaelen/projects/go/bin/gocode'
+let g:completor_refresh_always = 0
+"inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
 let g:completor_min_chars = 4
 let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki', 'gitcommit', 'notes']
 
