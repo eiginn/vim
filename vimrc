@@ -68,6 +68,8 @@ if has('termguicolors') && $USER != 'root' && !&diff
   set termguicolors
 endif
 
+au VimEnter * if &diff | execute 'windo set wrap' | endif
+
 " undo files location
 if v:version >= 703
     set undodir=~/.vim/undofiles
@@ -134,6 +136,11 @@ Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'zah/nim.vim'
+Plug 'tidalcycles/vim-tidal'
+
+" snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " NERDTree related
 Plug 'scrooloose/nerdtree'
@@ -144,6 +151,7 @@ Plug 'ryanoasis/vim-devicons'
 " Look and Feel bundles
 Plug 'KKPMW/sacredforest-vim'
 Plug 'KabbAmine/yowish.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'gregsexton/Muon'
 Plug 'jacoborus/tender.vim'
 Plug 'marcopaganini/termschool-vim-theme'
@@ -166,12 +174,17 @@ let g:airline_powerline_fonts = 1
 " =============== Everything else ===================
 
 if has('gui_running')
-    colorscheme jellybeans
+    "colorscheme jellybeans
+    colorscheme dracula
 else
     let g:jellybeans_overrides = {
-    \    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
+    \    'background': { 'ctermbg': 'none', '256ctermbg': 'none'},
     \}
-    colorscheme jellybeans
+    if has('termguicolors') && &termguicolors
+      let g:jellybeans_overrides['background']['guibg'] = 'none'
+    endif
+    "colorscheme jellybeans
+    colorscheme dracula
 endif
 let g:airline_theme='jellybeans'
 
@@ -242,7 +255,11 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_echo_delay = 50
 "let g:ale_set_loclist = 0
 "let g:ale_set_quickfix = 1
-"let g:ale_open_list = 1
+if &diff
+  let g:ale_lint_on_enter = 0
+else
+  let g:ale_open_list = 1
+endif
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 
@@ -296,17 +313,25 @@ nmap <silent> <leader>t :TagbarToggle<CR>
 
 " highlight changes
 let g:python_highlight_all = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
 
 " vim-notes
 let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
 
 " completor
-let g:completor_auto_trigger = 1
-let g:completor_gocode_binary = '/home/vaelen/projects/go/bin/gocode'
-let g:completor_refresh_always = 0
-"inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
-let g:completor_min_chars = 4
-let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki', 'gitcommit', 'notes']
+"let g:completor_auto_trigger = 1
+let g:completor_gocode_binary = '/home/vaelen/projects/go/bin/gocode-gomod'
+"let g:completor_refresh_always = 0
+inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
+"let g:completor_min_chars = 4
+let g:completor_blacklist = ['tagbar', 'netrw', 'unite', 'vimwiki', 'gitcommit', 'notes']
+let g:completor_complete_options = 'menuone,noselect,preview,noinsert'
+let g:completor_auto_close_doc = 0
 
 " Force using the Django template syntax file
 let g:sls_use_jinja_syntax = 1
