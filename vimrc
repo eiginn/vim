@@ -184,6 +184,7 @@ else
       let g:jellybeans_overrides['background']['guibg'] = 'none'
     endif
     "colorscheme jellybeans
+    let g:dracula_colorterm = 0
     colorscheme dracula
 endif
 let g:airline_theme='jellybeans'
