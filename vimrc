@@ -101,7 +101,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Yggdroot/indentLine'
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', { 'branch': 'no_color_change' }
 Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
 Plug 'easymotion/vim-easymotion'
@@ -174,8 +174,8 @@ let g:airline_powerline_fonts = 1
 " =============== Everything else ===================
 
 if has('gui_running')
-    "colorscheme jellybeans
-    colorscheme dracula
+    colorscheme jellybeans
+    "colorscheme dracula
 else
     let g:jellybeans_overrides = {
     \    'background': { 'ctermbg': 'none', '256ctermbg': 'none'},
@@ -183,9 +183,9 @@ else
     if has('termguicolors') && &termguicolors
       let g:jellybeans_overrides['background']['guibg'] = 'none'
     endif
-    "colorscheme jellybeans
+    colorscheme jellybeans
     let g:dracula_colorterm = 0
-    colorscheme dracula
+    "colorscheme dracula
 endif
 let g:airline_theme='jellybeans'
 
@@ -259,7 +259,7 @@ let g:ale_echo_delay = 50
 if &diff
   let g:ale_lint_on_enter = 0
 else
-  let g:ale_open_list = 1
+  let g:ale_open_list = 0
 endif
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
@@ -350,3 +350,6 @@ let g:wiki_root = '~/.wiki'
 " fugitive
 " open quickfix list after any :Glog or :Ggrep
 autocmd QuickFixCmdPost *grep* cwindow
+
+" large files
+autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
