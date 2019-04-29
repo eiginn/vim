@@ -106,13 +106,12 @@ Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'eiginn/iptables-vim'
-Plug 'elzr/vim-json'
+"Plug 'elzr/vim-json'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'fatih/vim-hclfmt'
 Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
 Plug 'hallison/vim-markdown'
 "Plug 'jamessan/vim-gnupg'
-Plug 'junegunn/vim-emoji'
 Plug 'jvirtanen/vim-hcl'
 Plug 'lervag/wiki.vim'
 Plug 'majutsushi/tagbar'
@@ -135,8 +134,7 @@ Plug 'w0rp/ale'
 "Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-Plug 'zah/nim.vim'
-Plug 'tidalcycles/vim-tidal'
+Plug 'robbles/logstash.vim'
 
 " snippets
 Plug 'SirVer/ultisnips'
@@ -184,7 +182,10 @@ else
       let g:jellybeans_overrides['background']['guibg'] = 'none'
     endif
     colorscheme jellybeans
-    let g:dracula_colorterm = 0
+    "colorscheme termschool
+    "set background=dark
+    "colorscheme hybrid
+    "let g:dracula_colorterm = 0
     "colorscheme dracula
 endif
 let g:airline_theme='jellybeans'
@@ -314,12 +315,6 @@ nmap <silent> <leader>t :TagbarToggle<CR>
 
 " highlight changes
 let g:python_highlight_all = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
 
 " vim-notes
 let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
