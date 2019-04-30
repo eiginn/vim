@@ -101,7 +101,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Yggdroot/indentLine'
-Plug 'airblade/vim-gitgutter', { 'branch': 'no_color_change' }
+Plug 'airblade/vim-gitgutter'
 Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
 Plug 'easymotion/vim-easymotion'
@@ -158,6 +158,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'nightsense/snow'
 Plug 'scwood/vim-hybrid'
 Plug 'trevordmiller/nova-vim'
+Plug 'aonemd/kuroi.vim'
 
 call plug#end()
 " MUST be run after pluggins loaded
@@ -173,7 +174,6 @@ let g:airline_powerline_fonts = 1
 
 if has('gui_running')
     colorscheme jellybeans
-    "colorscheme dracula
 else
     let g:jellybeans_overrides = {
     \    'background': { 'ctermbg': 'none', '256ctermbg': 'none'},
@@ -182,11 +182,6 @@ else
       let g:jellybeans_overrides['background']['guibg'] = 'none'
     endif
     colorscheme jellybeans
-    "colorscheme termschool
-    "set background=dark
-    "colorscheme hybrid
-    "let g:dracula_colorterm = 0
-    "colorscheme dracula
 endif
 let g:airline_theme='jellybeans'
 
@@ -291,8 +286,9 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Gitgutter
-"let g:gitgutter_eager = 0
-"let g:gitgutter_realtime = 0
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 " committia
 let g:committia_hooks = {}
