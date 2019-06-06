@@ -1,5 +1,5 @@
-let vimpager_scrolloff = 3
-let vimpager_passthrough = 1
+"let vimpager_scrolloff = 3
+let vimpager_passthrough = 0
 set t_ti= t_te=
 set mouse = ""
 set hlsearch

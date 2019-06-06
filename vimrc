@@ -23,8 +23,11 @@ set nofoldenable " Turn off folding
 set scrolloff=4 " keep n lines visible above and below the cursor
 set spelllang=en_us
 set noshowmode
-" algorithim is the only non-default here, helps with iptables diffs
-set diffopt=internal,filler,algorithm:patience
+
+if has("patch-8.1.0360")
+  " algorithim is the only non-default here, helps with iptables diffs
+  set diffopt=internal,filler,algorithm:patience
+endif
 
 
 " attempts to speed up terminal vim
@@ -55,6 +58,10 @@ if ! has('gui_running')
   "let &t_SR = "\<Esc>[4 q"
   " block for normal mode
   "let &t_EI = "\<Esc>[2 q"
+endif
+
+if $TERM == 'xterm-kitty'
+  let &t_ut=''
 endif
 
 " settings for true color and tmux escapes for true color
@@ -135,6 +142,9 @@ Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'robbles/logstash.vim'
+Plug 'wgwoods/vim-systemd-syntax'
+Plug 'google/vim-jsonnet'
+Plug 'liuchengxu/graphviz.vim'
 
 " snippets
 Plug 'SirVer/ultisnips'
@@ -142,9 +152,11 @@ Plug 'honza/vim-snippets'
 
 " NERDTree related
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
+if $TERM != 'xterm-kitty'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'ryanoasis/vim-devicons'
+endif
 
 " Look and Feel bundles
 Plug 'KKPMW/sacredforest-vim'
