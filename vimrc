@@ -1,6 +1,7 @@
 " GistID: 866aa2ef90816b965f4e
 " ================ General Config ===================
 
+set modelines=0
 set number
 set nocompatible
 set fillchars+=stl:\ ,stlnc:\
@@ -145,6 +146,7 @@ Plug 'robbles/logstash.vim'
 Plug 'wgwoods/vim-systemd-syntax'
 Plug 'google/vim-jsonnet'
 Plug 'liuchengxu/graphviz.vim'
+Plug 'aklt/plantuml-syntax'
 
 " snippets
 Plug 'SirVer/ultisnips'
@@ -171,6 +173,7 @@ Plug 'nightsense/snow'
 Plug 'scwood/vim-hybrid'
 Plug 'trevordmiller/nova-vim'
 Plug 'aonemd/kuroi.vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 " MUST be run after pluggins loaded
@@ -193,7 +196,8 @@ else
     if has('termguicolors') && &termguicolors
       let g:jellybeans_overrides['background']['guibg'] = 'none'
     endif
-    colorscheme jellybeans
+    set background=dark
+    colorscheme PaperColor
 endif
 let g:airline_theme='jellybeans'
 
@@ -356,3 +360,6 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 " large files
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
+
+" graphviz
+let g:graphviz_output_format = 'png'
