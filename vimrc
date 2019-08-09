@@ -174,6 +174,8 @@ Plug 'scwood/vim-hybrid'
 Plug 'trevordmiller/nova-vim'
 Plug 'aonemd/kuroi.vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'arcticicestudio/nord-vim'
+Plug 'ajh17/Spacegray.vim'
 
 call plug#end()
 " MUST be run after pluggins loaded
@@ -197,7 +199,7 @@ else
       let g:jellybeans_overrides['background']['guibg'] = 'none'
     endif
     set background=dark
-    colorscheme PaperColor
+    colorscheme spacegray
 endif
 let g:airline_theme='jellybeans'
 
