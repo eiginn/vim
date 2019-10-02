@@ -217,7 +217,7 @@ let g:gist_update_on_write = 2
 let g:gist_list_vsplit = 1
 
 " allow writes with sudo
-cmap w!! w !sudo tee % >/dev/null
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " show trailing whitespace with <leader>s
 set listchars=tab:>-,trail:·,eol:$
