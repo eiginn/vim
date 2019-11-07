@@ -116,7 +116,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'eiginn/iptables-vim'
 "Plug 'elzr/vim-json'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'fatih/vim-hclfmt'
 Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
 Plug 'hallison/vim-markdown'
 "Plug 'jamessan/vim-gnupg'
@@ -332,6 +331,7 @@ let g:python_highlight_all = 1
 
 " vim-notes
 let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
+let g:notes_conceal_url = 0
 
 " completor
 "let g:completor_auto_trigger = 1
