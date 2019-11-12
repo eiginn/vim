@@ -146,6 +146,9 @@ Plug 'wgwoods/vim-systemd-syntax'
 Plug 'google/vim-jsonnet'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'aklt/plantuml-syntax'
+" both of these are for bazel
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
 
 " snippets
 Plug 'SirVer/ultisnips'
@@ -198,7 +201,8 @@ else
       let g:jellybeans_overrides['background']['guibg'] = 'none'
     endif
     set background=dark
-    colorscheme spacegray
+    " colorscheme spacegray
+    colorscheme termschool
 endif
 let g:airline_theme='jellybeans'
 
