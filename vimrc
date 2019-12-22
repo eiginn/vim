@@ -146,6 +146,10 @@ Plug 'wgwoods/vim-systemd-syntax'
 Plug 'google/vim-jsonnet'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'aklt/plantuml-syntax'
+Plug 'momota/cisco.vim'
+Plug 'ruanyl/vim-gh-line'
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
+Plug 'jupyter-vim/jupyter-vim'
 " both of these are for bazel
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
@@ -197,11 +201,20 @@ else
     let g:jellybeans_overrides = {
     \    'background': { 'ctermbg': 'none', '256ctermbg': 'none'},
     \}
+    let g:PaperColor_Theme_Options = {
+      \   'theme': {
+      \     'default': {
+      \       'transparent_background': 1,
+      \       'allow_bold': 1,
+      \       'allow_italic': 1
+      \     }
+      \   }
+      \ }
     if has('termguicolors') && &termguicolors
       let g:jellybeans_overrides['background']['guibg'] = 'none'
     endif
     set background=dark
-    colorscheme spacegray
+    colorscheme termschool
 endif
 let g:airline_theme='jellybeans'
 
