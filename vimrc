@@ -114,13 +114,9 @@ Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'eiginn/iptables-vim'
-"Plug 'elzr/vim-json'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
 Plug 'hallison/vim-markdown'
 "Plug 'jamessan/vim-gnupg'
-Plug 'jvirtanen/vim-hcl'
-Plug 'lervag/wiki.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
@@ -131,13 +127,12 @@ Plug 'rhysd/committia.vim'
 Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'stephpy/vim-yaml'
-Plug 'tikhomirov/vim-glsl'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/YankRing.vim'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 "Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
@@ -145,21 +140,15 @@ Plug 'robbles/logstash.vim'
 Plug 'wgwoods/vim-systemd-syntax'
 Plug 'google/vim-jsonnet'
 Plug 'liuchengxu/graphviz.vim'
-Plug 'aklt/plantuml-syntax'
-Plug 'momota/cisco.vim'
-Plug 'ruanyl/vim-gh-line'
-Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'jupyter-vim/jupyter-vim'
 " both of these are for bazel
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
-
-" snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'inkarkat/vim-ingo-library', { 'branch': 'stable' }
+Plug 'inkarkat/vim-mark', { 'branch': 'stable' }
 
 " NERDTree related
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 if $TERM != 'xterm-kitty'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -170,14 +159,11 @@ endif
 Plug 'KKPMW/sacredforest-vim'
 Plug 'KabbAmine/yowish.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'gregsexton/Muon'
 Plug 'jacoborus/tender.vim'
-Plug 'marcopaganini/termschool-vim-theme'
-Plug 'morhetz/gruvbox'
+Plug 'eiginn/termschool-vim-theme'
 Plug 'nanotech/jellybeans.vim'
 Plug 'nightsense/snow'
 Plug 'scwood/vim-hybrid'
-Plug 'trevordmiller/nova-vim'
 Plug 'aonemd/kuroi.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
@@ -214,7 +200,7 @@ else
       let g:jellybeans_overrides['background']['guibg'] = 'none'
     endif
     set background=dark
-    colorscheme termschool
+    colorscheme spacegray
 endif
 let g:airline_theme='jellybeans'
 
@@ -381,3 +367,6 @@ autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | end
 
 " graphviz
 let g:graphviz_output_format = 'png'
+
+" vim-mark
+let g:mwDefaultHighlightingPalette = 'maximum'
