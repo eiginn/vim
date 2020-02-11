@@ -118,7 +118,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'hallison/vim-markdown'
 "Plug 'jamessan/vim-gnupg'
 Plug 'majutsushi/tagbar'
-Plug 'mattn/gist-vim'
+Plug 'mattn/vim-gist'
 Plug 'mattn/webapi-vim'
 Plug 'maralla/completor.vim'
 Plug 'mileszs/ack.vim'
