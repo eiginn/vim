@@ -144,6 +144,8 @@ Plug 'jupyter-vim/jupyter-vim'
 " both of these are for bazel
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
+
+" vim-mark needs this other repo
 Plug 'inkarkat/vim-ingo-library', { 'branch': 'stable' }
 Plug 'inkarkat/vim-mark', { 'branch': 'stable' }
 
