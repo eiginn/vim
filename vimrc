@@ -25,6 +25,12 @@ set scrolloff=4 " keep n lines visible above and below the cursor
 set spelllang=en_us
 set noshowmode
 
+if $TERM == 'xterm-kitty'
+  let &t_ut=''
+  " vim devicons won't work in kitty term without this
+  set t_RV=
+endif
+
 if has("patch-8.1.0360")
   " algorithim is the only non-default here, helps with iptables diffs
   set diffopt=internal,filler,algorithm:patience
@@ -59,10 +65,6 @@ if ! has('gui_running')
   "let &t_SR = "\<Esc>[4 q"
   " block for normal mode
   "let &t_EI = "\<Esc>[2 q"
-endif
-
-if $TERM == 'xterm-kitty'
-  let &t_ut=''
 endif
 
 " settings for true color and tmux escapes for true color
@@ -151,11 +153,10 @@ Plug 'inkarkat/vim-mark', { 'branch': 'stable' }
 
 " NERDTree related
 Plug 'preservim/nerdtree'
-if $TERM != 'xterm-kitty'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  Plug 'ryanoasis/vim-devicons'
-endif
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+Plug 'ryanoasis/vim-devicons'
 
 " Look and Feel bundles
 Plug 'KKPMW/sacredforest-vim'
