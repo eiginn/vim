@@ -202,7 +202,7 @@ else
     if has('termguicolors') && &termguicolors
       let g:jellybeans_overrides['background']['guibg'] = 'none'
     endif
-    set background=dark
+    "set background=dark
     colorscheme spacegray
 endif
 let g:airline_theme='jellybeans'
