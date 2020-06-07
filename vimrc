@@ -143,6 +143,8 @@ Plug 'wgwoods/vim-systemd-syntax'
 Plug 'google/vim-jsonnet'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'jupyter-vim/jupyter-vim'
+Plug 'tidalcycles/vim-tidal'
+Plug 'jjo/vim-cue'
 " both of these are for bazel
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
@@ -373,3 +375,9 @@ let g:graphviz_output_format = 'png'
 
 " vim-mark
 let g:mwDefaultHighlightingPalette = 'maximum'
+
+" vim-cue
+" yes that is global, vim-cue currently looks for it globally
+let g:cue_fmt_on_save = 1
+let g:cue_fmt_fail_silently = 0
+let g:cue_command = '/home/vaelen/projects/go/bin/cue'
