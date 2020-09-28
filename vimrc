@@ -142,9 +142,13 @@ Plug 'robbles/logstash.vim'
 Plug 'wgwoods/vim-systemd-syntax'
 Plug 'google/vim-jsonnet'
 Plug 'liuchengxu/graphviz.vim'
-Plug 'jupyter-vim/jupyter-vim'
+if empty($VIRTUAL_ENV)
+  Plug 'jupyter-vim/jupyter-vim'
+endif
 Plug 'tidalcycles/vim-tidal'
 Plug 'jjo/vim-cue'
+Plug 'nfnty/vim-nftables'
+
 " both of these are for bazel
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
@@ -173,6 +177,7 @@ Plug 'aonemd/kuroi.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
 Plug 'ajh17/Spacegray.vim'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 " MUST be run after pluggins loaded
@@ -182,32 +187,37 @@ filetype plugin indent on
 " manually set leader
 let g:mapleader = '\'
 
+" look and feel settings
 let g:airline_powerline_fonts = 1
-
-" =============== Everything else ===================
+let g:airline_theme='jellybeans'
+let g:jellybeans_overrides = {
+\    'background': { 'ctermbg': 'none', '256ctermbg': 'none'},
+\}
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'transparent_background': 1,
+  \       'allow_bold': 1,
+  \       'allow_italic': 1
+  \     }
+  \   }
+  \ }
+if has('termguicolors') && &termguicolors
+  let g:jellybeans_overrides['background']['guibg'] = 'none'
+endif
+let g:onedark_terminal_italics=1
 
 if has('gui_running')
     colorscheme jellybeans
+elseif &diff
+  set background=dark
+  colorscheme kuroi
 else
-    let g:jellybeans_overrides = {
-    \    'background': { 'ctermbg': 'none', '256ctermbg': 'none'},
-    \}
-    let g:PaperColor_Theme_Options = {
-      \   'theme': {
-      \     'default': {
-      \       'transparent_background': 1,
-      \       'allow_bold': 1,
-      \       'allow_italic': 1
-      \     }
-      \   }
-      \ }
-    if has('termguicolors') && &termguicolors
-      let g:jellybeans_overrides['background']['guibg'] = 'none'
-    endif
-    "set background=dark
-    colorscheme spacegray
+    " colorscheme spacegray
+    colorscheme onedark
 endif
-let g:airline_theme='jellybeans'
+
+" =============== Everything else ===================
 
 " indentlines
 let g:indentLine_setColors = 0
