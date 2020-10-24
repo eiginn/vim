@@ -1,6 +1,4 @@
-" GistID: 866aa2ef90816b965f4e
 " ================ General Config ===================
-
 set modelines=0
 set number
 set nocompatible
@@ -9,21 +7,41 @@ set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show unicode glyphs
 "set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 filetype off     " required!
-set noswapfile
-set nobackup
-set nowritebackup
 set guifont=Hack\ Nerd\ Font\ Mono\ 12
 set hlsearch
 set incsearch
 set updatetime=250
 set title
 set titleold=
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o
 set clipboard=unnamedplus
 set nofoldenable " Turn off folding
-set scrolloff=4 " keep n lines visible above and below the cursor
+set scrolloff=3 " keep n lines visible above and below the cursor
 set spelllang=en_us
 set noshowmode
+" make wrapped lines easier to spot
+let &showbreak=repeat('>', 3)
+" let /-style searches case-sensitive only if there is a capital letter
+set ignorecase
+set smartcase
+
+" swap files
+if isdirectory($HOME . '/.vim/swap')
+  set directory^=$HOME/.vim/swap//
+else
+  set noswapfile
+endif
+
+" backup disable
+set nobackup
+set nowritebackup
+
+" undo files location
+if isdirectory($HOME . '/.vim/undofiles')
+    set undodir=~/.vim/undofiles
+    set undofile
+endif
+
 
 if $TERM == 'xterm-kitty'
   let &t_ut=''
@@ -31,22 +49,16 @@ if $TERM == 'xterm-kitty'
   set t_RV=
 endif
 
-if has("patch-8.1.0360")
-  " algorithim is the only non-default here, helps with iptables diffs
+if &diff
   set diffopt=internal,filler,algorithm:patience
+  let g:html_dynamic_folds = 1
+  let g:html_no_progress = 1
+  let g:html_whole_filler = 1
 endif
-
 
 " attempts to speed up terminal vim
 " https://github.com/vim/vim/issues/2712
 "set regexpengine=1
-
-" make wrapped lines easier to spot
-let &showbreak=repeat('>', 3)
-" let /-style searches case-sensitive only if there is a capital letter
-set ignorecase
-set smartcase
-
 
 " fix up escape to normal mode speed
 if ! has('gui_running')
@@ -60,11 +72,11 @@ if ! has('gui_running')
 
   " Cursor shape in terminal
   " vertical line for insert mode
-  "let &t_SI = "\<Esc>[6 q"
+  let &t_SI = "\<Esc>[6 q"
   " underline for replace mode
-  "let &t_SR = "\<Esc>[4 q"
+  let &t_SR = "\<Esc>[4 q"
   " block for normal mode
-  "let &t_EI = "\<Esc>[2 q"
+  let &t_EI = "\<Esc>[2 q"
 endif
 
 " settings for true color and tmux escapes for true color
@@ -76,14 +88,6 @@ if has('termguicolors') && $USER != 'root' && !&diff
     set t_8b=[48;2;%lu;%lu;%lum
   endif
   set termguicolors
-endif
-
-au VimEnter * if &diff | execute 'windo set wrap' | endif
-
-" undo files location
-if v:version >= 703
-    set undodir=~/.vim/undofiles
-    set undofile
 endif
 
 " Enbale tab complete for commands
@@ -148,6 +152,7 @@ endif
 Plug 'tidalcycles/vim-tidal'
 Plug 'jjo/vim-cue'
 Plug 'nfnty/vim-nftables'
+"Plug 'AndrewRadev/linediff.vim'
 
 " both of these are for bazel
 Plug 'google/vim-maktaba'
@@ -190,31 +195,29 @@ let g:mapleader = '\'
 " look and feel settings
 let g:airline_powerline_fonts = 1
 let g:airline_theme='jellybeans'
-let g:jellybeans_overrides = {
-\    'background': { 'ctermbg': 'none', '256ctermbg': 'none'},
-\}
-let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default': {
-  \       'transparent_background': 1,
-  \       'allow_bold': 1,
-  \       'allow_italic': 1
-  \     }
-  \   }
-  \ }
-if has('termguicolors') && &termguicolors
-  let g:jellybeans_overrides['background']['guibg'] = 'none'
-endif
 let g:onedark_terminal_italics=1
 
 if has('gui_running')
-    colorscheme jellybeans
+  set background=dark
+  colorscheme jellybeans
 elseif &diff
   set background=dark
   colorscheme kuroi
 else
-    " colorscheme spacegray
-    colorscheme onedark
+  let g:jellybeans_overrides = {
+  \    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none'},
+  \}
+  let g:PaperColor_Theme_Options = {
+    \   'theme': {
+    \     'default': {
+    \       'transparent_background': 1,
+    \       'allow_bold': 1,
+    \       'allow_italic': 1
+    \     }
+    \   }
+    \ }
+  " colorscheme spacegray
+  colorscheme onedark
 endif
 
 " =============== Everything else ===================
