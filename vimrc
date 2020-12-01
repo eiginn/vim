@@ -150,7 +150,6 @@ if empty($VIRTUAL_ENV)
   Plug 'jupyter-vim/jupyter-vim'
 endif
 Plug 'tidalcycles/vim-tidal'
-Plug 'jjo/vim-cue'
 Plug 'nfnty/vim-nftables'
 "Plug 'AndrewRadev/linediff.vim'
 
@@ -216,8 +215,8 @@ else
     \     }
     \   }
     \ }
-  " colorscheme spacegray
-  colorscheme onedark
+  set background=dark
+  colorscheme kuroi
 endif
 
 " =============== Everything else ===================
@@ -370,9 +369,6 @@ let g:sls_use_jinja_syntax = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
-" vim-pad
-let g:pad#dir = '/home/vaelen/.vim-pad'
-
 " wiki
 let g:wiki_root = '~/.wiki'
 
@@ -388,9 +384,3 @@ let g:graphviz_output_format = 'png'
 
 " vim-mark
 let g:mwDefaultHighlightingPalette = 'maximum'
-
-" vim-cue
-" yes that is global, vim-cue currently looks for it globally
-let g:cue_fmt_on_save = 1
-let g:cue_fmt_fail_silently = 0
-let g:cue_command = '/home/vaelen/projects/go/bin/cue'
