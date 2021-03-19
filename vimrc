@@ -120,8 +120,9 @@ Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'eiginn/iptables-vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'hallison/vim-markdown'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 "Plug 'jamessan/vim-gnupg'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/vim-gist'
