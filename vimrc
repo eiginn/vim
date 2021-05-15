@@ -24,24 +24,11 @@ let &showbreak=repeat('>', 3)
 " let /-style searches case-sensitive only if there is a capital letter
 set ignorecase
 set smartcase
-
-" swap files
-if isdirectory($HOME . '/.vim/swap')
-  set directory^=$HOME/.vim/swap//
-else
-  set noswapfile
-endif
+set noswapfile
 
 " backup disable
 set nobackup
 set nowritebackup
-
-" undo files location
-if isdirectory($HOME . '/.vim/undofiles')
-    set undodir=~/.vim/undofiles
-    set undofile
-endif
-
 
 if $TERM == 'xterm-kitty'
   let &t_ut=''
@@ -115,7 +102,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Yggdroot/indentLine'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
 Plug 'easymotion/vim-easymotion'
@@ -153,6 +140,9 @@ endif
 Plug 'tidalcycles/vim-tidal'
 Plug 'nfnty/vim-nftables'
 "Plug 'AndrewRadev/linediff.vim'
+Plug 'wellle/context.vim'
+Plug 'bfrg/vim-jq'
+Plug 'bfrg/vim-jqplay'
 
 " both of these are for bazel
 Plug 'google/vim-maktaba'
@@ -165,8 +155,6 @@ Plug 'inkarkat/vim-mark', { 'branch': 'stable' }
 " NERDTree related
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
 Plug 'ryanoasis/vim-devicons'
 
 " Look and Feel bundles
@@ -297,6 +285,13 @@ endif
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 
+let g:ale_linters = {
+    \ 'sh': ['language_server', 'shellcheck'],
+    \ 'nix': ['rnix-lsp'],
+    \ }
+let g:ale_sh_language_server_executable = '/usr/local/bin/bash-language-server'
+let g:ale_sh_language_server_use_global = 1
+
 " load extra functions and their mappings
 if filereadable(expand("~/.vim/functions.vim"))
   source ~/.vim/functions.vim
@@ -322,10 +317,13 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Gitgutter
+" Gitgutter or vim-signify
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+if &diff
+  let g:signify_disable_by_default = 1
+endif
 
 " committia
 let g:committia_hooks = {}
@@ -385,3 +383,6 @@ let g:graphviz_output_format = 'png'
 
 " vim-mark
 let g:mwDefaultHighlightingPalette = 'maximum'
+
+" context.vim
+let g:context_enabled = 1
