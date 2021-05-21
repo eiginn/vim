@@ -140,7 +140,6 @@ endif
 Plug 'tidalcycles/vim-tidal'
 Plug 'nfnty/vim-nftables'
 "Plug 'AndrewRadev/linediff.vim'
-Plug 'wellle/context.vim'
 Plug 'bfrg/vim-jq'
 Plug 'bfrg/vim-jqplay'
 
