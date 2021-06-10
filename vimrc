@@ -26,6 +26,9 @@ set ignorecase
 set smartcase
 set noswapfile
 
+set ttyfast
+"let g:loaded_matchparen=1
+
 " backup disable
 set nobackup
 set nowritebackup
@@ -87,7 +90,8 @@ set completeopt=menu,preview,noinsert
 " ================ Indentation ======================
 
 set autoindent
-"set smartindent
+set smartindent
+set cindent
 "set smarttab
 set shiftwidth=2
 set softtabstop=2
@@ -100,48 +104,46 @@ call plug#begin('~/.vim/plugged')
 
 " Plugin bundles
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-signify'
-Plug 'cespare/vim-toml'
-Plug 'chr4/nginx.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'eiginn/iptables-vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 "Plug 'jamessan/vim-gnupg'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/vim-gist'
 Plug 'mattn/webapi-vim'
-Plug 'maralla/completor.vim'
 Plug 'mileszs/ack.vim'
-"Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
 Plug 'rhysd/committia.vim'
-Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'stephpy/vim-yaml'
-Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/YankRing.vim'
-Plug 'dense-analysis/ale'
 "Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-Plug 'robbles/logstash.vim'
-Plug 'wgwoods/vim-systemd-syntax'
-Plug 'google/vim-jsonnet'
 Plug 'liuchengxu/graphviz.vim'
 if empty($VIRTUAL_ENV)
   Plug 'jupyter-vim/jupyter-vim'
 endif
 Plug 'tidalcycles/vim-tidal'
-Plug 'nfnty/vim-nftables'
 "Plug 'AndrewRadev/linediff.vim'
 Plug 'bfrg/vim-jq'
 Plug 'bfrg/vim-jqplay'
+
+" Language bundles
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'cespare/vim-toml'
+Plug 'chr4/nginx.vim'
+Plug 'eiginn/iptables-vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+Plug 'google/vim-jsonnet'
+Plug 'nfnty/vim-nftables'
+Plug 'plasticboy/vim-markdown'
+Plug 'robbles/logstash.vim'
+Plug 'saltstack/salt-vim'
+Plug 'stephpy/vim-yaml'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'wgwoods/vim-systemd-syntax'
 
 " both of these are for bazel
 Plug 'google/vim-maktaba'
@@ -170,6 +172,15 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
 Plug 'ajh17/Spacegray.vim'
 Plug 'joshdick/onedark.vim'
+
+" NVIM
+if has('nvim')
+Plug 'nvim-lua/completion-nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/completion-treesitter'
+  Plug 'nvim-treesitter/playground'
+  Plug 'neovim/nvim-lspconfig'
+endif
 
 call plug#end()
 " MUST be run after pluggins loaded
@@ -225,6 +236,9 @@ let g:gist_list_vsplit = 1
 " allow writes with sudo
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
+" large files
+autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
+
 " show trailing whitespace with <leader>s
 set listchars=tab:>-,trail:·,eol:$
 nmap <leader>s :set nolist!<CR>
@@ -259,48 +273,10 @@ command Q qa!
 " easymotion
 map <Leader> <Plug>(easymotion-prefix)
 
-" pymode
-let g:pymode_rope = 0
-let g:pymode_rope_lookup_project = 0
-"let g:pymode_python = 'python'
-let g:pymode_indent = 1
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint', 'mccabe']
-let g:pymode_syntax = 1
-let g:pymode_lint = 1
-let g:pymode_lint_on_write = 1
-let g:pymode_lint_unmodified = 0
-
-" ALE
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" helps reduce lag when moving cursor fast
-let g:ale_echo_delay = 50
-"let g:ale_set_loclist = 0
-"let g:ale_set_quickfix = 1
-if &diff
-  let g:ale_lint_on_enter = 0
-else
-  let g:ale_open_list = 0
-endif
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-
-let g:ale_linters = {
-    \ 'sh': ['language_server', 'shellcheck'],
-    \ 'nix': ['rnix-lsp'],
-    \ }
-let g:ale_sh_language_server_executable = '/usr/local/bin/bash-language-server'
-let g:ale_sh_language_server_use_global = 1
-
 " load extra functions and their mappings
 if filereadable(expand("~/.vim/functions.vim"))
   source ~/.vim/functions.vim
 endif
-
-" Yankring
-" show yankring in new buffer
-nnoremap <silent> <F3> :YRShow<CR>
-" yankring hist file
-let g:yankring_history_file = '.yankring_history'
 
 " unnest JSON with jq utility
 nmap <leader>fj :%!jq '.'<CR>
@@ -323,6 +299,7 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 if &diff
   let g:signify_disable_by_default = 1
 endif
+let g:signify_skip = { 'vcs': { 'allow': ['git'] } }
 
 " committia
 let g:committia_hooks = {}
@@ -350,16 +327,6 @@ let g:python_highlight_all = 1
 let g:notes_directories = ['~/Notes', '~/Dropbox/Shared Notes']
 let g:notes_conceal_url = 0
 
-" completor
-"let g:completor_auto_trigger = 1
-let g:completor_gocode_binary = '/home/vaelen/projects/go/bin/gocode-gomod'
-"let g:completor_refresh_always = 0
-"inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
-"let g:completor_min_chars = 4
-let g:completor_blacklist = ['tagbar', 'netrw', 'unite', 'vimwiki', 'gitcommit', 'notes']
-let g:completor_complete_options = 'menuone,noselect,preview,noinsert'
-let g:completor_auto_close_doc = 0
-
 " Force using the Django template syntax file
 let g:sls_use_jinja_syntax = 1
 
@@ -374,9 +341,6 @@ let g:wiki_root = '~/.wiki'
 " open quickfix list after any :Glog or :Ggrep
 autocmd QuickFixCmdPost *grep* cwindow
 
-" large files
-autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
-
 " graphviz
 let g:graphviz_output_format = 'png'
 
@@ -385,3 +349,13 @@ let g:mwDefaultHighlightingPalette = 'maximum'
 
 " context.vim
 let g:context_enabled = 1
+
+if has('nvim')
+lua << EOF
+require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.vimls.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.bashls.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.pylsp.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.terraformls.setup{on_attach=require'completion'.on_attach}
+EOF
+endif
