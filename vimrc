@@ -172,10 +172,12 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
 Plug 'ajh17/Spacegray.vim'
 Plug 'joshdick/onedark.vim'
+Plug 'NTBBloodbath/doom-one.nvim'
 
 " NVIM
 if has('nvim')
-Plug 'nvim-lua/completion-nvim'
+  Plug 'lambdalisue/suda.vim'
+  Plug 'nvim-lua/completion-nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/completion-treesitter'
   Plug 'nvim-treesitter/playground'
@@ -233,8 +235,13 @@ let g:gist_get_multiplefile = 1
 let g:gist_update_on_write = 2
 let g:gist_list_vsplit = 1
 
-" allow writes with sudo
-cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+if !has('nvim')
+  " allow writes with sudo
+  " does not work in neovim, see:
+  " https://github.com/neovim/neovim/issues/1496
+  " https://github.com/lambdalisue/suda.vim
+  cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+endif
 
 " large files
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
