@@ -84,7 +84,7 @@ endif
 set wildmenu
 set wildmode=list:longest,full
 " Tab cycle through complete options
-set completeopt=menu,preview,noinsert
+set completeopt=menuone,noinsert,noselect
 
 
 " ================ Indentation ======================
@@ -107,26 +107,20 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-signify'
 Plug 'easymotion/vim-easymotion'
-Plug 'godlygeek/tabular'
-"Plug 'jamessan/vim-gnupg'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/vim-gist'
 Plug 'mattn/webapi-vim'
-Plug 'mileszs/ack.vim'
 Plug 'rhysd/committia.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-Plug 'liuchengxu/graphviz.vim'
 if empty($VIRTUAL_ENV)
   Plug 'jupyter-vim/jupyter-vim'
 endif
 Plug 'tidalcycles/vim-tidal'
-"Plug 'AndrewRadev/linediff.vim'
 Plug 'bfrg/vim-jq'
 Plug 'bfrg/vim-jqplay'
 
@@ -135,19 +129,13 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
 Plug 'eiginn/iptables-vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 Plug 'google/vim-jsonnet'
 Plug 'nfnty/vim-nftables'
-Plug 'plasticboy/vim-markdown'
-Plug 'robbles/logstash.vim'
 Plug 'saltstack/salt-vim'
 Plug 'stephpy/vim-yaml'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'wgwoods/vim-systemd-syntax'
-
-" both of these are for bazel
-Plug 'google/vim-maktaba'
-Plug 'bazelbuild/vim-bazel'
 
 " vim-mark needs this other repo
 Plug 'inkarkat/vim-ingo-library', { 'branch': 'stable' }
@@ -176,12 +164,17 @@ Plug 'NTBBloodbath/doom-one.nvim'
 
 " NVIM
 if has('nvim')
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'folke/trouble.nvim'
   Plug 'lambdalisue/suda.vim'
   Plug 'nvim-lua/completion-nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'nvim-treesitter/completion-treesitter'
   Plug 'nvim-treesitter/playground'
   Plug 'neovim/nvim-lspconfig'
+  Plug 'steelsojka/completion-buffers'
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/vim-vsnip-integ'
+  Plug 'rafamadriz/friendly-snippets'
 endif
 
 call plug#end()
@@ -365,4 +358,14 @@ require'lspconfig'.bashls.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.pylsp.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.terraformls.setup{on_attach=require'completion'.on_attach}
 EOF
+nnoremap <leader>xx <cmd>TroubleToggle<cr>
 endif
+
+" completion-nvim
+"{'default': {'comment': [], 'default': [{'complete_items': ['lsp', 'snippet']}, {'mode': '<c-p>'}, {'mode': '<c-n>'}]}}
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['lsp', 'snippet', 'buffers']},
+    \{'mode': '<c-p>'},
+    \{'mode': '<c-n>'}
+  \]
+let g:completion_enable_snippet = 'vim-vsnip'
