@@ -123,19 +123,22 @@ endif
 Plug 'tidalcycles/vim-tidal'
 Plug 'bfrg/vim-jq'
 Plug 'bfrg/vim-jqplay'
+Plug 'markonm/traces.vim'
 
 " Language bundles
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
 Plug 'eiginn/iptables-vim'
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 Plug 'google/vim-jsonnet'
 Plug 'nfnty/vim-nftables'
 Plug 'saltstack/salt-vim'
 Plug 'stephpy/vim-yaml'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'wgwoods/vim-systemd-syntax'
+Plug 'vmchale/dhall-vim'
+Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " vim-mark needs this other repo
 Plug 'inkarkat/vim-ingo-library', { 'branch': 'stable' }
@@ -356,7 +359,22 @@ require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.vimls.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.bashls.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.pylsp.setup{on_attach=require'completion'.on_attach}
-require'lspconfig'.terraformls.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.yamlls.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.dhall_lsp_server.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.terraformls.setup{on_attach=require'completion'.on_attach, filetypes = { "terraform", "hcl", "tf" }}
+--require'lspconfig'.diagnosticls.setup{
+--  filetypes = {'sh', 'yaml'},
+--  init_options = {
+--    filetypes = {
+--      yaml = "yamllint"
+--    },
+--    linters = {
+--      yamllint = {
+--        command = "/usr/bin/yamllint"
+--      }
+--    }
+--  }
+--}
 EOF
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
 endif
