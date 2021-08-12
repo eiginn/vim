@@ -5,7 +5,7 @@ command! ClearWhiteSpace :let _s=@/|:%s/\s\+$//e|:let @/=_s|:nohl
 nmap <F4> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
     if !exists("*synstack")
-        return
+      return
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
@@ -88,6 +88,12 @@ function! Certdump() range
 endfun
 command! -range Certdump <line1>,<line2>call Certdump()
 
+function! CrowRun() range
+  call system('echo'.shellescape(join(getline(a:firstline, a:lastline), "\n")).'|websocat ws://localhost:6666 -1')
+endfun
+command! -range CrowRun <line1>,<line2>call CrowRun()
+noremap <C-\> <silent> :call CrowRun()<CR>
+
 function! CFPaste() range
   let url = system('echo -n '.shellescape(join(getline(a:firstline, a:lastline), "\r")).'| cf-paste')
   echon split(url, '\n')[0]
@@ -121,7 +127,7 @@ function! CompareLines(...)
         let l2 = a:2
     else
         echom "bad number of arguments"
-        return;
+        return
     endif
 
     " Get the content of the lines

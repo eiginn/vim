@@ -124,6 +124,7 @@ Plug 'tidalcycles/vim-tidal'
 Plug 'bfrg/vim-jq'
 Plug 'bfrg/vim-jqplay'
 Plug 'markonm/traces.vim'
+Plug 'mhinz/vim-rfc'
 
 " Language bundles
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -139,6 +140,8 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'wgwoods/vim-systemd-syntax'
 Plug 'vmchale/dhall-vim'
 Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'daveyarwood/vim-alda'
+Plug 'fladson/vim-kitty'
 
 " vim-mark needs this other repo
 Plug 'inkarkat/vim-ingo-library', { 'branch': 'stable' }
@@ -199,29 +202,36 @@ if has('gui_running')
 elseif &diff
   set background=dark
   colorscheme kuroi
+  set termguicolors
 else
-  let g:jellybeans_overrides = {
-  \    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none'},
-  \}
-  let g:PaperColor_Theme_Options = {
-    \   'theme': {
-    \     'default': {
-    \       'transparent_background': 1,
-    \       'allow_bold': 1,
-    \       'allow_italic': 1
-    \     }
-    \   }
-    \ }
+"  let g:jellybeans_overrides = {
+"  \    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none'},
+"  \}
+"  let g:PaperColor_Theme_Options = {
+"    \   'theme': {
+"    \     'default': {
+"    \       'transparent_background': 1,
+"    \       'allow_bold': 1,
+"    \       'allow_italic': 1
+"    \     }
+"    \   }
+"    \ }
   set background=dark
   colorscheme kuroi
+  set termguicolors
 endif
 
 " =============== Everything else ===================
 
 " indentlines
-let g:indentLine_setColors = 0
-let g:indentLine_char = '┆'
+"let g:indentLine_setColors = 0
+"let g:indentLine_char = '┆'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_fileTypeExclude = ['text', 'help', 'nerdtree', 'note', 'json', 'notes', 'gitcommit', 'diff']
+"let g:indentLine_color_tty_light = 7 " (default: 4)
+"let g:indentLine_color_dark = 1 " (default: 2)
+"let g:indentLine_bgcolor_term = 202
+"let g:indentLine_bgcolor_gui = '#FF5F00'
 
 " Gist stuff
 let g:gist_show_privates = 1
@@ -362,28 +372,79 @@ require'lspconfig'.pylsp.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.yamlls.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.dhall_lsp_server.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.terraformls.setup{on_attach=require'completion'.on_attach, filetypes = { "terraform", "hcl", "tf" }}
---require'lspconfig'.diagnosticls.setup{
---  filetypes = {'sh', 'yaml'},
---  init_options = {
---    filetypes = {
---      yaml = "yamllint"
---    },
---    linters = {
---      yamllint = {
---        command = "/usr/bin/yamllint"
---      }
---    }
---  }
---}
+
+require "lspconfig".efm.setup {
+  init_options = {documentFormatting = true},
+  filetypes = {"sh", "bash"},
+  settings = {
+    rootMarkers = {".git/"},
+    languages = {
+      lua = {
+        {formatCommand = "lua-format -i", formatStdin = true}
+      },
+      sh = {
+        {
+          lintCommand = "shellcheck -f gcc -x",
+          lintSource = 'shellcheck',
+          lintFormats = {
+            '%f:%l:%c: %trror: %m',
+            '%f:%l:%c: %tarning: %m',
+            '%f:%l:%c: %tote: %m'
+          }
+        }
+      }
+    }
+  }
+}
+
+local sumneko_root_path = '/home/vaelen/repos/lua-language-server'
+local sumneko_binary = sumneko_root_path.."/bin/Linux/lua-language-server"
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+require'lspconfig'.sumneko_lua.setup {
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+  on_attach=require'completion'.on_attach
+}
+
 EOF
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
-endif
 
 " completion-nvim
-"{'default': {'comment': [], 'default': [{'complete_items': ['lsp', 'snippet']}, {'mode': '<c-p>'}, {'mode': '<c-n>'}]}}
-let g:completion_chain_complete_list = [
-    \{'complete_items': ['lsp', 'snippet', 'buffers']},
-    \{'mode': '<c-p>'},
-    \{'mode': '<c-n>'}
-  \]
+let g:completion_auto_change_source = 1
+let g:completion_chain_complete_list = {
+   \   'default' : {
+   \     'default': [
+   \       {'complete_items': ['path', 'lsp', 'snippet', 'buffers']},
+   \       {'mode': '<c-p>'},
+   \       {'mode': '<c-n>'}],
+   \   }
+   \ }
 let g:completion_enable_snippet = 'vim-vsnip'
+augroup CompletionEnableAll
+  autocmd!
+  autocmd BufEnter * lua require'completion'.on_attach()
+augroup end
+endif " end if has('nvim')
