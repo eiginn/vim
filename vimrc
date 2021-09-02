@@ -125,6 +125,7 @@ Plug 'bfrg/vim-jq'
 Plug 'bfrg/vim-jqplay'
 Plug 'markonm/traces.vim'
 Plug 'mhinz/vim-rfc'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Language bundles
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -142,6 +143,8 @@ Plug 'vmchale/dhall-vim'
 Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'daveyarwood/vim-alda'
 Plug 'fladson/vim-kitty'
+Plug 'alaviss/nim.nvim'
+Plug 'yschu7/junos.vim'
 
 " vim-mark needs this other repo
 Plug 'inkarkat/vim-ingo-library', { 'branch': 'stable' }
@@ -181,6 +184,8 @@ if has('nvim')
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/vim-vsnip-integ'
   Plug 'rafamadriz/friendly-snippets'
+  Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'liuchengxu/vista.vim'
 endif
 
 call plug#end()
@@ -204,6 +209,7 @@ elseif &diff
   colorscheme kuroi
   set termguicolors
 else
+  set termguicolors
 "  let g:jellybeans_overrides = {
 "  \    'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none'},
 "  \}
@@ -218,7 +224,6 @@ else
 "    \ }
   set background=dark
   colorscheme kuroi
-  set termguicolors
 endif
 
 " =============== Everything else ===================
@@ -373,6 +378,12 @@ require'lspconfig'.yamlls.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.dhall_lsp_server.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.terraformls.setup{on_attach=require'completion'.on_attach, filetypes = { "terraform", "hcl", "tf" }}
 
+require'lspconfig'.nimls.setup{
+  on_attach=require'completion'.on_attach,
+  filetypes = { "nim" },
+  cmd = { "nimlsp" }
+}
+
 require "lspconfig".efm.setup {
   init_options = {documentFormatting = true},
   filetypes = {"sh", "bash"},
@@ -437,7 +448,7 @@ let g:completion_auto_change_source = 1
 let g:completion_chain_complete_list = {
    \   'default' : {
    \     'default': [
-   \       {'complete_items': ['path', 'lsp', 'snippet', 'buffers']},
+   \       {'complete_items': ['lsp', 'snippet', 'buffers']},
    \       {'mode': '<c-p>'},
    \       {'mode': '<c-n>'}],
    \   }
