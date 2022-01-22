@@ -1,5 +1,5 @@
 " ================ General Config ===================
-set modelines=0
+set modelines=1
 set number
 set nocompatible
 set fillchars+=stl:\ ,stlnc:\
@@ -71,7 +71,7 @@ endif
 
 " settings for true color and tmux escapes for true color
 " don't run any of this in a vimdiff session
-if has('termguicolors') && $USER != 'root' && !&diff
+if has('termguicolors') && $USER != 'root' "&& !&diff
   if !empty($TMUX)
     " yes thats an escape code "^[" is done via Ctrl+V then ESC
     set t_8f=[38;2;%lu;%lu;%lum
@@ -132,7 +132,7 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'cespare/vim-toml'
 Plug 'chr4/nginx.vim'
 Plug 'eiginn/iptables-vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'google/vim-jsonnet'
 Plug 'nfnty/vim-nftables'
 Plug 'saltstack/salt-vim'
@@ -145,15 +145,17 @@ Plug 'daveyarwood/vim-alda'
 Plug 'fladson/vim-kitty'
 Plug 'alaviss/nim.nvim'
 Plug 'yschu7/junos.vim'
+Plug 'm-pilia/vim-pkgbuild'
 
 " vim-mark needs this other repo
 Plug 'inkarkat/vim-ingo-library', { 'branch': 'stable' }
 Plug 'inkarkat/vim-mark', { 'branch': 'stable' }
 
 " NERDTree related
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
+"Plug 'preservim/nerdtree'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'ryanoasis/vim-devicons'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
 " Look and Feel bundles
 Plug 'KKPMW/sacredforest-vim'
@@ -170,22 +172,25 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'ajh17/Spacegray.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'NTBBloodbath/doom-one.nvim'
+Plug 'wuelnerdotexe/vim-enfocado'
+Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 
 " NVIM
 if has('nvim')
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'folke/trouble.nvim'
   Plug 'lambdalisue/suda.vim'
-  Plug 'nvim-lua/completion-nvim'
+  Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+  Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/playground'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'steelsojka/completion-buffers'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/vim-vsnip-integ'
   Plug 'rafamadriz/friendly-snippets'
   Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'liuchengxu/vista.vim'
+  Plug 'elihunter173/dirbuf.nvim'
 endif
 
 call plug#end()
@@ -198,8 +203,9 @@ let g:mapleader = '\'
 
 " look and feel settings
 let g:airline_powerline_fonts = 1
-let g:airline_theme='jellybeans'
+let g:airline_theme='embark'
 let g:onedark_terminal_italics=1
+let g:embark_terminal_italics = 1
 
 if has('gui_running')
   set background=dark
@@ -300,15 +306,16 @@ endif
 nmap <leader>fj :%!jq '.'<CR>
 
 " NERDtree
-let g:NERDTreeWinSize = 40
-let g:NERDTreeHighlightCursorline = 0
-let g:NERDTreeShowBookmarks = 1
-" autocmd vimenter * if !argc() | NERDTree | endif
-" causes nerdtree to open if vim is opened without a file or on a directory
-" also closes vim if nerdtree buffer is last buffer open
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"let g:NERDTreeWinSize = 40
+"let g:NERDTreeHighlightCursorline = 0
+"let g:NERDTreeShowBookmarks = 1
+"" autocmd vimenter * if !argc() | NERDTree | endif
+"" causes nerdtree to open if vim is opened without a file or on a directory
+"" also closes vim if nerdtree buffer is last buffer open
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <leader>v <cmd>CHADopen<cr>
 
 " Gitgutter or vim-signify
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
@@ -368,20 +375,43 @@ let g:mwDefaultHighlightingPalette = 'maximum'
 " context.vim
 let g:context_enabled = 1
 
-if has('nvim')
-lua << EOF
-require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
-require'lspconfig'.vimls.setup{on_attach=require'completion'.on_attach}
-require'lspconfig'.bashls.setup{on_attach=require'completion'.on_attach}
-require'lspconfig'.pylsp.setup{on_attach=require'completion'.on_attach}
-require'lspconfig'.yamlls.setup{on_attach=require'completion'.on_attach}
-require'lspconfig'.dhall_lsp_server.setup{on_attach=require'completion'.on_attach}
-require'lspconfig'.terraformls.setup{on_attach=require'completion'.on_attach, filetypes = { "terraform", "hcl", "tf" }}
+" tidalcycles
+let g:tidal_target = "terminal"
 
-require'lspconfig'.nimls.setup{
-  on_attach=require'completion'.on_attach,
-  filetypes = { "nim" },
-  cmd = { "nimlsp" }
+if has('nvim') && !&diff
+let g:coq_settings = { 'auto_start': v:true }
+let g:coq_settings.xdg = v:true
+let g:coq_settings.clients = { 'lsp': { 'weight_adjust': 1.4 } }
+lua << EOF
+-- local lsp = require "lspconfig"
+local coq = require "coq"
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  sync_install = false,
+  highlight = {
+    enable = true
+  }
+}
+
+require'lspconfig'.gopls.setup{coq.lsp_ensure_capabilities{}}
+require'lspconfig'.vimls.setup{coq.lsp_ensure_capabilities{}}
+require'lspconfig'.bashls.setup{coq.lsp_ensure_capabilities{}}
+require'lspconfig'.pylsp.setup{coq.lsp_ensure_capabilities{}}
+require'lspconfig'.dhall_lsp_server.setup{coq.lsp_ensure_capabilities{}}
+require'lspconfig'.terraformls.setup{coq.lsp_ensure_capabilities{}}
+require'lspconfig'.tflint.setup{coq.lsp_ensure_capabilities{}}
+
+require "lspconfig".yamlls.setup {
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["https://json.schemastore.org/taskfile.json"] = "Taskfile.yml"
+      },
+    }
+  },
+  coq.lsp_ensure_capabilities{}
 }
 
 require "lspconfig".efm.setup {
@@ -437,25 +467,20 @@ require'lspconfig'.sumneko_lua.setup {
       },
     },
   },
-  on_attach=require'completion'.on_attach
+  coq.lsp_ensure_capabilities{}
 }
 
 EOF
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
 
-" completion-nvim
-let g:completion_auto_change_source = 1
-let g:completion_chain_complete_list = {
-   \   'default' : {
-   \     'default': [
-   \       {'complete_items': ['lsp', 'snippet', 'buffers']},
-   \       {'mode': '<c-p>'},
-   \       {'mode': '<c-n>'}],
-   \   }
-   \ }
-let g:completion_enable_snippet = 'vim-vsnip'
-augroup CompletionEnableAll
+"augroup CompletionEnableAll
+"  autocmd!
+"  autocmd BufEnter * lua require'completion'.on_attach()
+"augroup end
+endif " end if has('nvim') && !&diff
+
+" highlight yanked text
+augroup LuaHighlight
   autocmd!
-  autocmd BufEnter * lua require'completion'.on_attach()
-augroup end
-endif " end if has('nvim')
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+augroup END
