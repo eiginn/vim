@@ -153,3 +153,15 @@ function! CompareLines(...)
     normal n
 endfunction
 command! -nargs=* CL call CompareLines(<f-args>)
+
+function! Droidpatch()
+  let out = system('droidpatch '.shellescape(expand('%')))
+  echon out
+endfunction
+command! Droidpatch call Droidpatch()
+
+function! DroidpatchReTerminal()
+  let out = system('cat '.shellescape(expand('%')).' | ssh terminal.local "droidpatch"')
+  echon out
+endfunction
+command! DroidpatchReTerminal call DroidpatchReTerminal()

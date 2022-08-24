@@ -26,6 +26,9 @@ set ignorecase
 set smartcase
 set noswapfile
 
+" prevent "Hit ENTER to continue" prompt
+set cmdheight=2
+
 set ttyfast
 "let g:loaded_matchparen=1
 
@@ -126,11 +129,12 @@ Plug 'bfrg/vim-jqplay'
 Plug 'markonm/traces.vim'
 Plug 'mhinz/vim-rfc'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'mbbill/undotree'
 
 " Language bundles
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'cespare/vim-toml'
-Plug 'chr4/nginx.vim'
+Plug 'fatih/vim-nginx'
 Plug 'eiginn/iptables-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'google/vim-jsonnet'
@@ -164,7 +168,6 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'jacoborus/tender.vim'
 Plug 'eiginn/termschool-vim-theme'
 Plug 'nanotech/jellybeans.vim'
-Plug 'nightsense/snow'
 Plug 'scwood/vim-hybrid'
 Plug 'aonemd/kuroi.vim'
 Plug 'NLKNguyen/papercolor-theme'
@@ -378,6 +381,9 @@ let g:context_enabled = 1
 " tidalcycles
 let g:tidal_target = "terminal"
 
+" undotree
+nnoremap <F5> :UndotreeToggle<CR>
+
 if has('nvim') && !&diff
 let g:coq_settings = { 'auto_start': v:true }
 let g:coq_settings.xdg = v:true
@@ -387,7 +393,7 @@ lua << EOF
 local coq = require "coq"
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = "all",
   sync_install = false,
   highlight = {
     enable = true
