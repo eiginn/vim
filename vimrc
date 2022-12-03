@@ -120,9 +120,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-if empty($VIRTUAL_ENV)
-  Plug 'jupyter-vim/jupyter-vim'
-endif
 Plug 'tidalcycles/vim-tidal'
 Plug 'bfrg/vim-jq'
 Plug 'bfrg/vim-jqplay'
@@ -150,6 +147,7 @@ Plug 'fladson/vim-kitty'
 Plug 'alaviss/nim.nvim'
 Plug 'yschu7/junos.vim'
 Plug 'm-pilia/vim-pkgbuild'
+Plug 'terrastruct/d2-vim'
 
 " vim-mark needs this other repo
 Plug 'inkarkat/vim-ingo-library', { 'branch': 'stable' }
@@ -177,6 +175,9 @@ Plug 'joshdick/onedark.vim'
 Plug 'NTBBloodbath/doom-one.nvim'
 Plug 'wuelnerdotexe/vim-enfocado'
 Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
+Plug 'sam4llis/nvim-tundra'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'chrisbra/Colorizer'
 
 " NVIM
 if has('nvim')
@@ -215,7 +216,7 @@ if has('gui_running')
   colorscheme jellybeans
 elseif &diff
   set background=dark
-  colorscheme kuroi
+  colorscheme tundra
   set termguicolors
 else
   set termguicolors
@@ -232,8 +233,14 @@ else
 "    \   }
 "    \ }
   set background=dark
-  colorscheme kuroi
+  colorscheme tundra
 endif
+
+let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
+lua << EOF
+require("catppuccin").setup()
+EOF
+colorscheme catppuccin
 
 " =============== Everything else ===================
 
@@ -362,9 +369,6 @@ let g:sls_use_jinja_syntax = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
-" wiki
-let g:wiki_root = '~/.wiki'
-
 " fugitive
 " open quickfix list after any :Glog or :Ggrep
 autocmd QuickFixCmdPost *grep* cwindow
@@ -418,6 +422,14 @@ require "lspconfig".yamlls.setup {
     }
   },
   coq.lsp_ensure_capabilities{}
+}
+
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.jsonls.setup {
+  capabilities = capabilities,
 }
 
 require "lspconfig".efm.setup {
@@ -476,7 +488,33 @@ require'lspconfig'.sumneko_lua.setup {
   coq.lsp_ensure_capabilities{}
 }
 
+local function setup_diags()
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+      virtual_text = true,
+      signs = true,
+      update_in_insert = true,
+      underline = true,
+    }
+  )
+end
+
+local function setup_ll()
+  local pubdiag = "textDocument/publishDiagnostics"
+  local def_pubdiag_handler = vim.lsp.handlers[pubdiag]
+  vim.lsp.handlers[pubdiag] = function(err, method, res, cid, bufnr, cfg)
+    def_pubdiag_handler(err, method, res, cid, bufnr, cfg)
+    vim.diagnostic.setloclist({ open = false })
+  end
+end
+
+setup_diags()
+setup_ll()
+
 EOF
+
+" find me: quickfix location list
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
 
 "augroup CompletionEnableAll
