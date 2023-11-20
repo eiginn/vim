@@ -98,7 +98,7 @@ set cindent
 "set smarttab
 set shiftwidth=2
 set softtabstop=2
-"set tabstop=2
+set tabstop=4
 set expandtab
 
 " =================== vim-plug ========================
@@ -122,7 +122,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'tidalcycles/vim-tidal'
 Plug 'bfrg/vim-jq'
-Plug 'bfrg/vim-jqplay'
+Plug 'bfrg/vim-jqplay', {'commit': '0675d35cf2de705f63a2074f7c9e7f26ba07d651'}
 Plug 'markonm/traces.vim'
 Plug 'mhinz/vim-rfc'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -170,12 +170,10 @@ Plug 'scwood/vim-hybrid'
 Plug 'aonemd/kuroi.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
-Plug 'ajh17/Spacegray.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'NTBBloodbath/doom-one.nvim'
 Plug 'wuelnerdotexe/vim-enfocado'
 Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
-Plug 'sam4llis/nvim-tundra'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'chrisbra/Colorizer'
 
@@ -195,6 +193,7 @@ if has('nvim')
   Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'liuchengxu/vista.vim'
   Plug 'elihunter173/dirbuf.nvim'
+  Plug 'tanvirtin/monokai.nvim'
 endif
 
 call plug#end()
@@ -211,12 +210,17 @@ let g:airline_theme='embark'
 let g:onedark_terminal_italics=1
 let g:embark_terminal_italics = 1
 
+let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
+lua << EOF
+require("catppuccin").setup()
+EOF
+
 if has('gui_running')
   set background=dark
-  colorscheme jellybeans
+  colorscheme catppuccin
 elseif &diff
   set background=dark
-  colorscheme tundra
+  colorscheme catppuccin
   set termguicolors
 else
   set termguicolors
@@ -233,14 +237,8 @@ else
 "    \   }
 "    \ }
   set background=dark
-  colorscheme tundra
+  colorscheme catppuccin
 endif
-
-let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
-lua << EOF
-require("catppuccin").setup()
-EOF
-colorscheme catppuccin
 
 " =============== Everything else ===================
 
@@ -253,6 +251,7 @@ let g:indentLine_fileTypeExclude = ['text', 'help', 'nerdtree', 'note', 'json', 
 "let g:indentLine_color_dark = 1 " (default: 2)
 "let g:indentLine_bgcolor_term = 202
 "let g:indentLine_bgcolor_gui = '#FF5F00'
+autocmd VimEnter * if bufname('%') == '' | IndentLinesDisable | endif
 
 " Gist stuff
 let g:gist_show_privates = 1
@@ -461,7 +460,7 @@ local sumneko_binary = sumneko_root_path.."/bin/Linux/lua-language-server"
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-require'lspconfig'.sumneko_lua.setup {
+require'lspconfig'.lua_ls.setup {
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
