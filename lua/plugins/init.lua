@@ -7,7 +7,6 @@ return {
 
   { "inkarkat/vim-ingo-library", branch = "stable" },
   { "inkarkat/vim-mark", branch = "stable" },
-  "folke/trouble.nvim",
   "lambdalisue/suda.vim",
   "hrsh7th/vim-vsnip",
   "hrsh7th/vim-vsnip-integ",
@@ -19,7 +18,6 @@ return {
   -- language bundles
   "bfrg/vim-jq",
   -- "bfrg/vim-jqplay",
-  "fatih/vim-go",
   "fladson/vim-kitty",
 
   -- Look and Feel

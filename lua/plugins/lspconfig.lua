@@ -29,7 +29,33 @@ return {
       }
     end,
     config = function()
-      -- Your LSP settings here
-    end,
+      local coq = require "coq"
+      require'lspconfig'.gopls.setup{coq.lsp_ensure_capabilities{}}
+      require'lspconfig'.vimls.setup{coq.lsp_ensure_capabilities{}}
+      require'lspconfig'.bashls.setup{coq.lsp_ensure_capabilities{}}
+      require'lspconfig'.taplo.setup{coq.lsp_ensure_capabilities{}}
+
+      require "lspconfig".yamlls.setup {
+        settings = {
+          yaml = {
+            schemas = {
+              ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+              ["https://json.schemastore.org/taskfile.json"] = "Taskfile.yml",
+            },
+          }
+        },
+        coq.lsp_ensure_capabilities{}
+      }
+
+      require'lspconfig'.tflint.setup{coq.lsp_ensure_capabilities{}}
+      require'lspconfig'.terraformls.setup{coq.lsp_ensure_capabilities{}}
+      vim.api.nvim_create_autocmd({"BufWritePre"}, {
+        pattern = {"*.tf", "*.tfvars"},
+        callback = function()
+          vim.lsp.buf.format()
+        end,
+      })
+
+    end, -- end config
   }
 }
