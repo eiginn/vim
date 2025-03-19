@@ -7,6 +7,8 @@ let g:mapleader = '\'
 lua <<EOF
 require("config.lazy")
 EOF
+syntax on
+filetype plugin indent on
 
 set modelines=1
 set number
@@ -29,7 +31,7 @@ set ignorecase
 set smartcase
 set noswapfile
 " prevent "Hit ENTER to continue" prompt
-set cmdheight=2
+"set cmdheight=2
 set nomore
 set ttyfast
 " backup disable
@@ -45,6 +47,17 @@ set softtabstop=2
 set tabstop=4
 set expandtab
 
+" settings for true color and tmux escapes for true color
+" don't run any of this in a vimdiff session
+if has('termguicolors') && $USER != 'root' "&& !&diff
+  if !empty($TMUX)
+    " yes thats an escape code "^[" is done via Ctrl+V then ESC
+    set t_8f=[38;2;%lu;%lu;%lum
+    set t_8b=[48;2;%lu;%lu;%lum
+  endif
+  set termguicolors
+endif
+
 " Provider setup
 " Python
 let g:python3_host_prog = '/home/vaelen/.local/pyenv/versions/py3nvim/bin/python'
@@ -57,11 +70,11 @@ if &diff
   let g:html_whole_filler = 1
 endif
 
-if $TERM == 'xterm-kitty'
-  let &t_ut=''
-  " vim devicons won't work in kitty term without this
-  set t_RV=
-endif
+"if $TERM == 'xterm-kitty'
+"  let &t_ut=''
+"  " vim devicons won't work in kitty term without this
+"  set t_RV=
+"endif
 
 " large files turn off syntax
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
@@ -83,6 +96,9 @@ nmap <C-A> Go
 
 " Disable EX mode key
 map Q <Nop>
+
+" EXIT ALL THE THINGS
+command Q qa!
 
 " load extra functions and their mappings
 if filereadable(expand("~/.vim/functions.vim"))
@@ -115,6 +131,8 @@ endfunction
 
 " tagbar
 nmap <silent> <leader>t :TagbarToggle<CR>
+" CHADtree
+nnoremap <leader>v <cmd>CHADopen<cr>
 
 " highlight changes
 let g:python_highlight_all = 1
@@ -128,3 +146,9 @@ let g:tidal_target = "terminal"
 let g:coq_settings = { 'auto_start': v:true }
 let g:coq_settings.xdg = v:true
 let g:coq_settings.clients = { 'lsp': { 'weight_adjust': 1.4 } }
+
+" look and feel settings
+let g:airline_powerline_fonts = 1
+let g:airline_theme='onedark'
+let g:onedark_terminal_italics=1
+let g:embark_terminal_italics = 1
