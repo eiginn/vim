@@ -1,7 +1,3 @@
-"set runtimepath^=~/.vim runtimepath+=~/.vim/after
-"let &packpath = &runtimepath
-"source ~/.config/nvim/vimrc
-
 " manually set leader, must be before Lazy is loaded
 let g:mapleader = '\'
 lua <<EOF
@@ -101,17 +97,17 @@ map Q <Nop>
 command Q qa!
 
 " load extra functions and their mappings
-if filereadable(expand("~/.vim/functions.vim"))
-  source ~/.vim/functions.vim
+if filereadable(expand("~/.config/nvim/functions.vim"))
+  source ~/.config/nvim/functions.vim
 endif
 
 " unnest JSON with jq utility
 nmap <leader>fj :%!jq '.'<CR>
 
-" Gitgutter or vim-signify
-highlight GitGutterAdd    guifg=#009900 ctermfg=2
-highlight GitGutterChange guifg=#bbbb00 ctermfg=3
-highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+" vim-signify
+highlight SignifySignAdd    guifg=#009900 ctermfg=2
+highlight SignifySignChange guifg=#bbbb00 ctermfg=3
+highlight SignifySignDelete guifg=#ff2222 ctermfg=1
 if &diff
   let g:signify_disable_by_default = 1
 endif
@@ -143,12 +139,6 @@ let g:mwDefaultHighlightingPalette = 'maximum'
 " tidalcycles
 let g:tidal_target = "terminal"
 
-let g:coq_settings = { 'auto_start': v:true }
-let g:coq_settings.xdg = v:true
-let g:coq_settings.clients = { 'lsp': { 'weight_adjust': 1.4 } }
-
 " look and feel settings
-let g:airline_powerline_fonts = 1
-let g:airline_theme='onedark'
 let g:onedark_terminal_italics=1
 let g:embark_terminal_italics = 1

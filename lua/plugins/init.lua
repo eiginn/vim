@@ -9,13 +9,12 @@ return {
   { "inkarkat/vim-mark", branch = "stable" },
   "folke/trouble.nvim",
   "lambdalisue/suda.vim",
-  { "ms-jpq/coq_nvim", branch = "coq" },
-  { "ms-jpq/coq.artifacts", branch = "artifacts" },
   "hrsh7th/vim-vsnip",
   "hrsh7th/vim-vsnip-integ",
   "elihunter173/dirbuf.nvim",
   "b0o/schemastore.nvim",
   "lukas-reineke/indent-blankline.nvim",
+  "mhinz/vim-signify",
 
   -- language bundles
   "bfrg/vim-jq",
