@@ -4,7 +4,7 @@ return {
   "rhysd/committia.vim",
   "tidalcycles/vim-tidal",
   "mg979/vim-visual-multi",
-  { "sindrets/diffview.nvim", cmd = { "DiffviewOpen" } },
+  { "sindrets/diffview.nvim", cmd = { "DiffviewOpen", "DiffviewFileHistory" } },
 
   { "inkarkat/vim-ingo-library", branch = "stable" },
   { "inkarkat/vim-mark", branch = "stable" },
