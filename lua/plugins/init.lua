@@ -4,6 +4,7 @@ return {
   "rhysd/committia.vim",
   "tidalcycles/vim-tidal",
   "mg979/vim-visual-multi",
+  { "sindrets/diffview.nvim", cmd = { "DiffviewOpen" } },
 
   { "inkarkat/vim-ingo-library", branch = "stable" },
   { "inkarkat/vim-mark", branch = "stable" },
@@ -14,6 +15,17 @@ return {
   "b0o/schemastore.nvim",
   "lukas-reineke/indent-blankline.nvim",
   "mhinz/vim-signify",
+
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      opts = function (_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        table.insert(opts.ensure_installed, "http")
+      end,
+    }
+  },
 
   -- language bundles
   "bfrg/vim-jq",
@@ -31,15 +43,5 @@ return {
       -- load the colorscheme here
       vim.cmd([[colorscheme tokyonight-moon]])
     end,
-  },
-  {
-    "rest-nvim/rest.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      opts = function (_, opts)
-        opts.ensure_installed = opts.ensure_installed or {}
-        table.insert(opts.ensure_installed, "http")
-      end,
-    }
   },
 }
