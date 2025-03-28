@@ -5,6 +5,11 @@ return {
       require("go").setup({
         trouble = true
       })
+      vim.g.tagbar_type_go = {
+        ctagstype = "go",
+        ctagsbin = "gotags",
+        ctagsargs = "-sort -silent",
+      }
     end,
     event = {"CmdlineEnter"},
     ft = {"go", 'gomod'},
