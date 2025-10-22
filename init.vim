@@ -84,7 +84,7 @@ set listchars=tab:»-,trail:•,eol:¶,nbsp:⎵,precedes:«,extends:» sbr=↪
 nmap <C-N><C-N> :set invnumber<CR>
 
 " paste mode toggle
-set pastetoggle=<F2>
+" set pastetoggle=<F2>
 
 " insert mode in new line at end of file
 " REMEBER if you are in (my) tmux the prefix is also <C-A> duh

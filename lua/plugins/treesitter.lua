@@ -9,7 +9,8 @@ return {
       configs.setup({
         ensure_installed = { "c", "lua", "vim", "vimdoc", "dockerfile",
                              "python", "hcl", "terraform", "devicetree",
-                             "uxntal", "bash", "dot"},
+                             "uxntal", "bash", "dot",
+                             "go", "gowork", "gomod", "gosum", "sql", "gotmpl", "json", "comment" },
         sync_install = false,
         highlight = { enable = true },
         indent = { enable = true },
@@ -22,7 +23,7 @@ return {
     ft = "pkl",
     dependencies = { "nvim-treesitter/nvim-treesitter", "L3MON4D3/LuaSnip" },
     build = function()
-      require('pkl-neovim.internal').init()
+      require('pkl-neovim').init()
       -- Set up syntax highlighting.
       vim.cmd("TSInstall! pkl")
     end,
