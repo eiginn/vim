@@ -17,19 +17,19 @@ return {
       })
     end,
   },
-  {
-    "apple/pkl-neovim",
-    lazy = true,
-    ft = "pkl",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "L3MON4D3/LuaSnip" },
-    build = function()
-      require('pkl-neovim').init()
-      -- Set up syntax highlighting.
-      vim.cmd("TSInstall! pkl")
-    end,
-    config = function()
-      -- Set up snippets.
-      require("luasnip.loaders.from_snipmate").lazy_load()
-    end,
-  },
+  -- {
+  --   "apple/pkl-neovim",
+  --   lazy = true,
+  --   ft = "pkl",
+  --   dependencies = { "nvim-treesitter/nvim-treesitter", "L3MON4D3/LuaSnip" },
+  --   build = function()
+  --     require('pkl-neovim').init()
+  --     -- Set up syntax highlighting.
+  --     vim.cmd("TSInstall! pkl")
+  --   end,
+  --   config = function()
+  --     -- Set up snippets.
+  --     require("luasnip.loaders.from_snipmate").lazy_load()
+  --   end,
+  -- },
 }
