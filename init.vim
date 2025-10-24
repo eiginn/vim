@@ -142,3 +142,6 @@ let g:tidal_target = "terminal"
 " look and feel settings
 let g:onedark_terminal_italics=1
 let g:embark_terminal_italics = 1
+
+" disable perl provider warning in :checkhealth
+let g:loaded_perl_provider = 0

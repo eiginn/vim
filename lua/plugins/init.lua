@@ -16,16 +16,16 @@ return {
   "lukas-reineke/indent-blankline.nvim",
   "mhinz/vim-signify",
 
-  -- {
-  --   "rest-nvim/rest.nvim",
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     opts = function (_, opts)
-  --       opts.ensure_installed = opts.ensure_installed or {}
-  --       table.insert(opts.ensure_installed, "http")
-  --     end,
-  --   }
-  -- },
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      opts = function(_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        table.insert(opts.ensure_installed, "http")
+      end,
+    }
+  },
 
   -- language bundles
   "bfrg/vim-jq",

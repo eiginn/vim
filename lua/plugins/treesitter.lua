@@ -9,7 +9,7 @@ return {
       configs.setup({
         ensure_installed = { "c", "lua", "vim", "vimdoc", "dockerfile",
                              "python", "hcl", "terraform", "devicetree",
-                             "uxntal", "bash", "dot",
+                             "uxntal", "bash", "dot", "html", "yaml",
                              "go", "gowork", "gomod", "gosum", "sql", "gotmpl", "json", "comment" },
         sync_install = false,
         highlight = { enable = true },

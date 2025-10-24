@@ -34,4 +34,7 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true, notify = true },
   change_detection = { enabled = false, notify = false },
+  rocks = {
+    server = "https://lumen-oss.github.io/rocks-binaries/",
+  },
 })
