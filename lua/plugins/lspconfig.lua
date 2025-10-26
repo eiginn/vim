@@ -50,6 +50,18 @@ return {
           }
         },
       })
+      vim.lsp.enable('pylsp')
+      vim.lsp.config('pylsp', {
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                maxLineLength = 120,
+              }
+            }
+          }
+        }
+      })
 
       vim.lsp.enable('tflint')
       vim.lsp.enable('terraformls')
