@@ -15,6 +15,7 @@ return {
   "b0o/schemastore.nvim",
   "lukas-reineke/indent-blankline.nvim",
   "mhinz/vim-signify",
+  "nfnty/vim-nftables",
 
   {
     "rest-nvim/rest.nvim",
