@@ -7,7 +7,13 @@ return {
   { "sindrets/diffview.nvim", cmd = { "DiffviewOpen", "DiffviewFileHistory" } },
 
   { "inkarkat/vim-ingo-library", branch = "stable" },
-  { "inkarkat/vim-mark", branch = "stable" },
+  {
+    "inkarkat/vim-mark",
+    branch = "stable",
+    init = function()
+      vim.g.mw_no_mappings = 1
+    end
+  },
   "lambdalisue/suda.vim",
   "hrsh7th/vim-vsnip",
   "hrsh7th/vim-vsnip-integ",
