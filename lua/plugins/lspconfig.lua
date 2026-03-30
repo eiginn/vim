@@ -47,6 +47,7 @@ return {
               ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
               ["https://json.schemastore.org/taskfile.json"] = "Taskfile.yml",
             },
+            validate = { enable = true },
           }
         },
       })
