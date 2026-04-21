@@ -22,6 +22,8 @@ return {
   "lukas-reineke/indent-blankline.nvim",
   "mhinz/vim-signify",
   "nfnty/vim-nftables",
+  "nvim-tree/nvim-web-devicons",
+  { 'nvim-mini/mini.icons', version = '*' },
 
   {
     "rest-nvim/rest.nvim",
