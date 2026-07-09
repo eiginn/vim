@@ -25,16 +25,16 @@ return {
   "nvim-tree/nvim-web-devicons",
   { 'nvim-mini/mini.icons', version = '*' },
 
-  {
-    "rest-nvim/rest.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      opts = function(_, opts)
-        opts.ensure_installed = opts.ensure_installed or {}
-        table.insert(opts.ensure_installed, "http")
-      end,
-    }
-  },
+  --{
+  --  "rest-nvim/rest.nvim",
+  --  dependencies = {
+  --    "nvim-treesitter/nvim-treesitter",
+  --    opts = function(_, opts)
+  --      opts.ensure_installed = opts.ensure_installed or {}
+  --      table.insert(opts.ensure_installed, "http")
+  --    end,
+  --  }
+  --},
 
   -- language bundles
   "bfrg/vim-jq",

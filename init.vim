@@ -56,7 +56,7 @@ endif
 
 " Provider setup
 " Python
-let g:python3_host_prog = '/home/vaelen/.local/pyenv/versions/py3nvim/bin/python'
+"let g:python3_host_prog = '/home/vaelen/.local/pyenv/versions/py3nvim/bin/python'
 
 
 if &diff
