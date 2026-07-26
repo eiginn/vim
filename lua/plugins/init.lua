@@ -4,6 +4,7 @@ return {
   "rhysd/committia.vim",
   "tidalcycles/vim-tidal",
   "mg979/vim-visual-multi",
+  "tpope/vim-fugitive",
   { "sindrets/diffview.nvim", cmd = { "DiffviewOpen", "DiffviewFileHistory" } },
 
   { "inkarkat/vim-ingo-library", branch = "stable" },
@@ -35,6 +36,11 @@ return {
   --    end,
   --  }
   --},
+
+  {
+  "esmuellert/codediff.nvim",
+  cmd = "CodeDiff",
+  },
 
   -- language bundles
   "bfrg/vim-jq",

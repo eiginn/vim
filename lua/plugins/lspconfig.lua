@@ -25,8 +25,8 @@ return {
           always = false,
           sticky_manual = true -- Trigger completion on every keystroke after manual completion until you leave insert mode
         },
-        auto_start = 'shut-up',
-        xdg = true,
+        -- auto_start = 'shut-up',
+        -- xdg = true,
         clients = {
           lsp = { weight_adjust = 1.4 },
         },
@@ -39,7 +39,6 @@ return {
       vim.lsp.enable('bashls')
       vim.lsp.enable('taplo')
 
-      vim.lsp.enable('yamlls')
       vim.lsp.config('yamlls', {
         settings = {
           yaml = {
@@ -51,18 +50,29 @@ return {
           }
         },
       })
-      vim.lsp.enable('pylsp')
-      vim.lsp.config('pylsp', {
-        settings = {
-          pylsp = {
-            plugins = {
-              pycodestyle = {
-                maxLineLength = 120,
-              }
-            }
+      vim.lsp.enable('yamlls')
+
+      -- vim.lsp.config('pylsp', {
+      --   settings = {
+      --     pylsp = {
+      --       plugins = {
+      --         pycodestyle = {
+      --           maxLineLength = 120,
+      --         }
+      --       }
+      --     }
+      --   }
+      -- })
+      -- vim.lsp.enable('pylsp')
+
+      vim.lsp.config('ruff', {
+        init_options = {
+          settings = {
+            lineLength = 120
           }
         }
       })
+      vim.lsp.enable('ruff')
 
       vim.lsp.enable('tflint')
       vim.lsp.enable('terraformls')
