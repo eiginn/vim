@@ -1,3 +1,18 @@
+vim.api.nvim_create_autocmd('User', { pattern = 'TSUpdate',
+callback = function()
+  require('nvim-treesitter.parsers').tmux = {
+    install_info = {
+      url = 'https://github.com/Freed-Wu/tree-sitter-tmux',
+      -- optional entries:
+      branch = 'main', -- only needed if different from default branch
+      generate = true, -- only needed if repo does not contain pre-generated `src/parser.c`
+      generate_from_json = false, -- only needed if repo does not contain `src/grammar.json` either
+      queries = 'queries', -- also install queries from given directory
+    },
+  }
+end})
+
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
