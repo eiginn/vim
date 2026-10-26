@@ -25,7 +25,8 @@ return {
         "uxntal", "bash", "dot", "html", "yaml",
         "go", "gowork", "gomod", "gosum", "sql",
         "gotmpl", "json", "comment", "nginx", "udev",
-        "tmux", "strace" }
+        "tmux", "strace", "zsh", "jinja", "bpftrace",
+      }
     end,
   },
   -- {
