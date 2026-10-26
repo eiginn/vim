@@ -1,3 +1,5 @@
+local util = require 'lspconfig.util'
+
 return {
   {
     "neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
@@ -37,6 +39,14 @@ return {
       vim.lsp.enable('gopls')
       vim.lsp.enable('vimls')
       vim.lsp.enable('bashls')
+
+      vim.lsp.config('taplo', {
+        -- required for loose toml files not in a project structure
+        root_dir = function(bufnr, on_dir)
+          local fname = vim.api.nvim_buf_get_name(bufnr)
+          on_dir(util.root_pattern('*.toml')(fname))
+        end,
+      })
       vim.lsp.enable('taplo')
 
       vim.lsp.config('yamlls', {
@@ -57,7 +67,7 @@ return {
       vim.lsp.enable('yamlls')
 
       vim.lsp.config('jsonls', {
-        settinggs = {
+        settings = {
           json = {
             schemas = require('schemastore').json.schemas(),
             validate = { enable = true },
