@@ -39,6 +39,7 @@ return {
       vim.lsp.enable('gopls')
       vim.lsp.enable('vimls')
       vim.lsp.enable('bashls')
+      vim.lsp.enable('systemd_lsp')
 
       vim.lsp.config('taplo', {
         -- required for loose toml files not in a project structure
