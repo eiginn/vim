@@ -60,7 +60,16 @@ return {
               -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
               url = "",
             },
-            schemas = require('schemastore').yaml.schemas(),
+            schemas = require('schemastore').yaml.schemas {
+              extra = {
+                {
+                  description = 'gomplate yaml',
+                  fileMatch = { '.gomplate.yaml', '.gomplate.yml', 'gomplate.yaml', 'gomplate.yml' },
+                  name = 'gomplate.yaml',
+                  url = 'https://raw.githubusercontent.com/hairyhenderson/gomplate/main/schema/gomplate-config.json',
+                },
+              },
+            },
             validate = { enable = true },
           }
         },
